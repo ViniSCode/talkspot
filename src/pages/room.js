@@ -4,8 +4,8 @@ import { Menu } from '../components/Menu';
 export function Room () {
 
   return (
-    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto p-4 bg-white rounded-t-none rounded-b-2xl">
-      <header className="flex items-center justify-between border-b pb-8">
+    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto px-4 pt-2 bg-white rounded-t-none rounded-b-2xl">
+      <header className="flex items-center justify-between border-b pb-6">
         <span className='block text-[32px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
         <div className='flex item-center gap-4'>
           <button className='bg-blue-500 text-white rounded-lg px-4 py-3'>
@@ -17,10 +17,10 @@ export function Room () {
         </div>
       </header>
 
-      <main className='mt-10'>
+      <main className='mt-8'>
         <section>
           <div className='flex gap-3'>
-            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room image"  className="w-10 h-10 object-cover rounded-full"/>
+            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-10 h-10 object-cover rounded-full"/>
             <div>
               <span className='block'>Lorem's Room</span>
               <span className='block text-gray-400 text-xs'>loremipsum@gmail.com</span>
