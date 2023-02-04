@@ -17,7 +17,7 @@ export function Room () {
         </div>
       </header>
 
-      <main className='mt-8'>
+      <main className='mt-5'>
         <section>
           <div className='flex gap-3'>
             <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-10 h-10 object-cover rounded-full"/>
@@ -27,7 +27,7 @@ export function Room () {
             </div>
           </div>
 
-          <div className='px-4 py-10 bg-gray-200 mt-8 rounded-2xl flex flex-col gap-4 max-h-[50vh] overflow-y-scroll scrollbar-none'>
+          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 max-h-[50vh] overflow-y-scroll scrollbar-none'>
               <div className='flex flex-col gap-4'>
                 
                 <div>
@@ -35,10 +35,10 @@ export function Room () {
                     <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
                     <span className='block'>Lorem's Room</span>
                   </div>
-                  <div className='ml-[52px] flex flex-col gap-2 text-xs mt-3'>
-                    <p className='bg-white balloon p-4 w-fit'>Lorem Ipsum Testing </p>
-                    <p className='bg-white balloon p-4 w-fit'>Lorem</p>
-                    <p className='bg-white balloon p-4 w-fit'>Lorem Ipsum Testing</p>
+                  <div className='ml-[52px] flex flex-col gap-2 text-xs mt-2'>
+                    <p className='bg-white balloon px-4 py-3 w-fit'>Lorem Ipsum Testing </p>
+                    <p className='bg-white balloon px-4 py-3 w-fit'>Lorem</p>
+                    <p className='bg-white balloon px-4 py-3 w-fit'>Lorem Ipsum Testing</p>
                   </div>
                 </div>
 
@@ -47,10 +47,10 @@ export function Room () {
                       <span className='block'>You</span>
                       <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
                     </div>
-                    <div className='flex flex-col gap-2 text-xs mt-3 mr-[52px] text-white'>
-                      <p className='bg-blue-500 balloon-user p-4 w-fit'>Lorem Ipsum Testing </p>
-                      <p className='bg-blue-500 balloon-user p-4 w-fit'>Lorem</p>
-                      <p className='bg-blue-500 balloon-user p-4 w-fit'>Lorem Ipsum Testing</p>
+                    <div className='flex flex-col gap-2 text-xs mt-2 mr-[52px] text-white'>
+                      <p className='bg-blue-500 balloon-user px-4 py-3 w-fit'>Lorem Ipsum Testing </p>
+                      <p className='bg-blue-500 balloon-user px-4 py-3 w-fit'>Lorem</p>
+                      <p className='bg-blue-500 balloon-user px-4 py-3 w-fit'>Lorem Ipsum Testing</p>
                     </div>
                   </div>
 
@@ -59,10 +59,10 @@ export function Room () {
                       <span className='block'>You</span>
                       <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
                     </div>
-                    <div className='flex flex-col gap-2 text-xs mt-3 mr-[52px] text-white'>
-                      <p className='bg-blue-500 balloon-user p-4 w-fit'>Lorem Ipsum Testing </p>
-                      <p className='bg-blue-500 balloon-user p-4 w-fit'>Lorem</p>
-                      <p className='bg-blue-500 balloon-user p-4 w-fit'>Lorem Ipsum Testing</p>
+                    <div className='flex flex-col gap-2 text-xs mt-2 mr-[52px] text-white'>
+                      <p className='bg-blue-500 balloon-user px-4 py-3 w-fit'>Lorem Ipsum Testing </p>
+                      <p className='bg-blue-500 balloon-user px-4 py-3 w-fit'>Lorem</p>
+                      <p className='bg-blue-500 balloon-user px-4 py-3 w-fit'>Lorem Ipsum Testing</p>
                     </div>
                   </div>
 
@@ -71,7 +71,7 @@ export function Room () {
                       <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
                       <span className='block'>Lorem's Room</span>
                     </div>
-                    <div className='ml-[52px] flex flex-col gap-2 text-xs mt-3'>
+                    <div className='ml-[52px] flex flex-col gap-2 text-xs mt-2'>
                       <p className='bg-white balloon p-4 w-fit'>Lorem Ipsum Testing</p>
                       <p className='bg-white balloon p-4 w-fit'>Lorem</p>
                       <p className='bg-white balloon p-4 w-fit'>Lorem Ipsum Testing</p>
