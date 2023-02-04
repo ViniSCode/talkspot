@@ -38,10 +38,4 @@ body {
   .vh-height {
     height: calc(100vh - 300px);
   }
-
-  @media (min-height: 560px) {
-    .vh-height {
-      max-height: 100%;
-    }
-  }
 }
