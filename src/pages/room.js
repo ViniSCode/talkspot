@@ -28,7 +28,7 @@ export function Room () {
             </div>
           </div>
 
-          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 max-h-[55vh] overflow-y-scroll scrollbar-none'>
+          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 max-h-[50vh] overflow-y-scroll scrollbar-none'>
               <div className='flex flex-col gap-4'> 
                 <div>
                   <div  className='flex items-center gap-3'>
