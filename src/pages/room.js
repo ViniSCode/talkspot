@@ -1,10 +1,11 @@
 import { FiUsers } from 'react-icons/fi';
+import { IoSend } from 'react-icons/io5';
 import { Menu } from '../components/Menu';
 
 export function Room () {
 
   return (
-    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto px-4 pt-2 bg-white rounded-t-none rounded-b-2xl">
+    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto px-4 pt-2 pb-4 bg-white rounded-t-none rounded-b-2xl">
       <header className="flex items-center justify-between border-b pb-6">
         <span className='block text-[32px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
         <div className='flex item-center gap-4'>
@@ -27,9 +28,8 @@ export function Room () {
             </div>
           </div>
 
-          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 max-h-[50vh] overflow-y-scroll scrollbar-none'>
-              <div className='flex flex-col gap-4'>
-                
+          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 max-h-[55vh] overflow-y-scroll scrollbar-none'>
+              <div className='flex flex-col gap-4'> 
                 <div>
                   <div  className='flex items-center gap-3'>
                     <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
@@ -78,6 +78,12 @@ export function Room () {
                     </div>
                 </div>
               </div>
+          </div>
+
+          <div className='mt-8 relative'>
+            <label htmlFor="chat"></label>
+            <IoSend className='text-gray-400 absolute right-5 top-5 cursor-pointer' />
+            <input type="text" id='chat' name='chat' placeholder="Digite uma mensagem" className='w-full bg-gray-200 rounded-full px-4 py-4 placeholder:text-xs lg:placeholder:text-base pl-12' />
           </div>
         </section>
       </main>
