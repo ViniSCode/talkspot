@@ -3,11 +3,10 @@ import { IoSend } from 'react-icons/io5';
 import { Menu } from '../components/Menu';
 
 export function Room () {
-
   return (
-    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto px-4 pt-2 h-full bg-white rounded-t-none rounded-b-2xl">
+    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <header className="flex items-center justify-between border-b pb-6">
-        <span className='block text-[32px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
+        <span className='block text-[30px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
         <div className='flex item-center gap-4'>
           <button className='bg-blue-500 text-white rounded-lg px-4 py-3'>
             <FiUsers size={22}/>
@@ -28,7 +27,7 @@ export function Room () {
             </div>
           </div>
 
-          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 max-h-[50vh] overflow-y-scroll scrollbar-none'>
+          <div className='px-4 py-10 bg-gray-200 mt-5 rounded-2xl flex flex-col gap-4 vh-height overflow-y-scroll scrollbar-none'>
               <div className='flex flex-col gap-4'> 
                 <div>
                   <div  className='flex items-center gap-3'>
@@ -66,6 +65,7 @@ export function Room () {
                     </div>
                   </div>
 
+              </div>
                   <div>
                     <div  className='flex items-center gap-3'>
                       <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
@@ -76,8 +76,7 @@ export function Room () {
                       <p className='bg-white balloon p-4 w-fit'>Lorem</p>
                       <p className='bg-white balloon p-4 w-fit'>Lorem Ipsum Testing</p>
                     </div>
-                </div>
-              </div>
+                  </div>
           </div>
 
           <div className='mt-8 relative'>

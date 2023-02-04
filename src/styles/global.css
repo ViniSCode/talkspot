@@ -34,4 +34,14 @@ body {
   .balloon-user {
     border-radius: 16px 0 16px 16px;
   }
+
+  .vh-height {
+    height: calc(100vh - 300px);
+  }
+
+  @media (min-height: 560px) {
+    .vh-height {
+      max-height: 100%;
+    }
+  }
 }
