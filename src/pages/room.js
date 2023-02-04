@@ -4,7 +4,7 @@ import { Menu } from '../components/Menu';
 export function Room () {
 
   return (
-    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto p-4 bg-white  rounded-2xl mt-4">
+    <div className="max-w-[358px] lg:max-w-[1276px] mx-auto p-4 bg-white rounded-t-none rounded-b-2xl">
       <header className="flex items-center justify-between border-b pb-8">
         <span className='block text-[32px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
         <div className='flex item-center gap-4'>
