@@ -3,6 +3,7 @@ import {
   RouterProvider
 } from "react-router-dom";
 import { Home } from "./pages";
+import { Room } from "./pages/room";
 import './styles/global.css';
 
 
@@ -19,6 +20,10 @@ function App() {
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "/room",
+      element: <Room />,
     },
   ]);
 

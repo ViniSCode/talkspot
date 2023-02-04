@@ -4,13 +4,13 @@
 
 
 body {
-  @apply scrollbar-thumb-gray-500 scrollbar-thin scrollbar-none bg-gray-900 text-white;
+  @apply scrollbar-thumb-gray-500 scrollbar-thin scrollbar-none bg-gray-200 text-black;
   -webkit-font-smoothing: antialiased
 }
 
 @layer base {
   html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
   }
@@ -20,4 +20,15 @@ body {
     min-height: 100vh;
   }
 
+  .h-centered {
+    margin-top: calc(100vh - 80vh); 
+  }
+
+  .balloon {
+    border-radius: 0px 16px 16px 16px;
+  }
+
+  .balloon-user {
+    border-radius: 16px 0 16px 16px;
+  }
 }
