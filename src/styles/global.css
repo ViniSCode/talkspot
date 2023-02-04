@@ -36,6 +36,6 @@ body {
   }
 
   .vh-height {
-    height: calc(100vh - 300px);
+    height: calc(100vh - 320px);
   }
 }
