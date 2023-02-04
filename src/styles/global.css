@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  @apply scrollbar-thumb-gray-500 scrollbar-thin scrollbar-none bg-gray-900 text-white;
+  -webkit-font-smoothing: antialiased
+}
+
+@layer base {
+  html {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  
+  #root, body, html {
+    height: 100%;
+    min-height: 100vh;
+  }
+
+}
