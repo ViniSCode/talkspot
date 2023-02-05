@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FiCopy, FiUserPlus } from 'react-icons/fi';
-import { useLocation } from 'react-router-dom';
 import { Menu } from '../components/Menu';
 
 export function Header() {
   const [modalShareActive, setModalShareActive] = useState(false);
-  const {pathname} = useLocation();
 
   return (
     <header className="flex items-center justify-between lg:justify-end border-b pb-6 lg:pb-3">

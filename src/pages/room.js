@@ -22,7 +22,7 @@ export function Room () {
         
       <Header />
 
-        <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4 pr-[58px]'>
+        <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4 lg:pr-[58px]'>
          <Chat chatMessagesRef={chatMessagesRef}/>
         </main>
       </div>

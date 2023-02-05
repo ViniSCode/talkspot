@@ -11,9 +11,6 @@ export function Sidebar () {
     isSelected(pathname);
   }, [pathname])
 
-
-  console.log(selected)
-
   return (
     <aside className="hidden lg:block vh-height-border">
       <span className='pl-[62px] text-[22px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
