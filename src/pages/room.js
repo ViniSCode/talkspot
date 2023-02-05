@@ -13,6 +13,7 @@ export function Room () {
     }
   }, [])
 
+
   return (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
@@ -80,17 +81,17 @@ export function Room () {
                     </div>
 
                 </div>
-                    <div>
-                      <div  className='flex items-center gap-3'>
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
-                        <span className='block'>Lorem's Room</span>
-                      </div>
-                      <div className='ml-[52px] flex flex-col gap-2 text-xs mt-2'>
-                        <p className='bg-white balloon p-4 w-fit message'>Lorem Ipsum Testing</p>
-                        <p className='bg-white balloon p-4 w-fit message'>Lorem</p>
-                        <p className='bg-white balloon p-4 w-fit message'>Lorem Ipsum Testing</p>
-                      </div>
+                  <div>
+                    <div  className='flex items-center gap-3'>
+                      <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-9 h-9 object-cover rounded-full"/>
+                      <span className='block'>Lorem's Room</span>
                     </div>
+                    <div className='ml-[52px] flex flex-col gap-2 text-xs mt-2'>
+                      <p className='bg-white balloon p-4 w-fit message'>Lorem Ipsum Testing</p>
+                      <p className='bg-white balloon p-4 w-fit message'>Lorem</p>
+                      <p className='bg-white balloon p-4 w-fit message'>Lorem Ipsum Testing</p>
+                    </div>
+                </div>
             </div>
 
             <div className='mt-8 relative'>
