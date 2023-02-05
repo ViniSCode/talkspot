@@ -4,7 +4,6 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages";
 import { Room } from "./pages/room";
-import { Room2 } from "./pages/room2";
 import './styles/global.css';
 
 
@@ -25,10 +24,6 @@ function App() {
     {
       path: "/room",
       element: <Room />,
-    },
-    {
-      path: "/room2",
-      element: <Room2 />,
     },
   ]);
 

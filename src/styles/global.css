@@ -4,7 +4,7 @@
 
 
 body {
-  @apply scrollbar-thumb-gray-500 scrollbar-thin scrollbar-none bg-gray-200 text-black;
+  @apply scrollbar-thumb-gray-500 scrollbar-thin scrollbar-none bg-white text-black;
   -webkit-font-smoothing: antialiased
 }
 
@@ -38,4 +38,42 @@ body {
   .vh-height {
     height: calc(100vh - 320px);
   }
+
+  .vh-height-border {
+    height: calc(100vh - 70px);
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 20rem auto;
+  }
+
+  @media (min-width: 1024px) {
+    .vh-height {
+      height: calc(100vh - 240px);
+    }
+  }
+
+  .li {
+    font-size: 15px;
+  }
+
+  .li > .svg {
+    color: #757575;  
+  }
+
+  .li:hover, .li:hover .svg {
+    color: #5B5BFC;
+  }
+
+  .liActive {
+    color: white;
+    background-color: #5B5BFC;
+    font-size: 15px;
+  }
+
+  .liActive > .svg {
+    color: white;
+  }
+
 }
