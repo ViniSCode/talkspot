@@ -12,7 +12,7 @@ export function Users () {
         
       <Header />
 
-        <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4'>
+        <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4 lg:pr-[58px]'>
          <ListUsers />
         </main>
       </div>
