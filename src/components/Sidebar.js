@@ -1,8 +1,18 @@
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FiLogOut, FiMessageSquare, FiSettings, FiUsers, FiXCircle } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function Sidebar () {
+  const [selected, isSelected] = useState();
   const {pathname} = useLocation();
+
+  useEffect(() => {
+    isSelected(pathname);
+  }, [pathname])
+
+
+  console.log(selected)
 
   return (
     <aside className="hidden lg:block vh-height-border">
@@ -10,35 +20,47 @@ export function Sidebar () {
       <div className='mt-[13px] border-r border-t h-full'>
         <nav className="flex flex-col h-full justify-between pb-6">
           <ul className='pl-[62px] flex flex-col gap-8 mt-10'>
-            <li className={`rounded-lg px-2 py-2 w-[200px] ${pathname === '/room' ? 'liActive' : 'li'}`}>
-              <a href="" className='flex items-center gap-4 font-medium'>
+            <motion.li
+              exit={{ backgroundColor: 'transparent', color: '#000000' }}
+              animate={selected === '/room' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
+              className={`rounded-lg px-2 py-2 w-[200px]`}
+            >
+              <Link to="/room" className='flex items-center gap-4 font-medium'>
                 <FiMessageSquare size={22} className="svg"/>
                 Messages
-              </a>
-            </li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] ${pathname === '/users' ? 'liActive' : 'li'}`}>
-              <a href="" className='flex items-center gap-4 font-medium'>
+              </Link>
+            </motion.li>
+            <motion.li
+              exit={{ backgroundColor: 'transparent', color: '#000000' }}
+              animate={selected === '/users' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
+              className={`rounded-lg px-2 py-2 w-[200px]`}
+            >
+              <Link to="/users" className='flex items-center gap-4 font-medium'>
                 <FiUsers size={22} className="svg"/>
                 Users
-              </a>
-            </li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] ${pathname === '/settings' ? 'liActive' : 'li'}`}>
-              <a href="" className='flex items-center gap-4 font-medium'>
+              </Link>
+            </motion.li>
+            <motion.li
+              exit={{ backgroundColor: 'transparent', color: '#000000' }}
+              animate={selected === '/settings' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
+              className={`rounded-lg px-2 py-2 w-[200px]`}
+            >
+              <Link to="/settings" className='flex items-center gap-4 font-medium'>
                 <FiSettings size={22} className="svg"/>
                 Settings
-              </a>
-            </li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] ${pathname === '/logout' ? 'liActive' : 'li'}`}>
-              <a href="" className='flex items-center gap-4 font-medium'>
-                <FiLogOut size={22} className="svg"/>
-                Logout
-              </a>
-            </li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] ${pathname === '/encerrar' ? 'liActive' : 'li'}`}>
-              <a href="" className='flex items-center gap-4 font-medium'>
+              </Link>
+            </motion.li>
+            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/encerrar' ? 'liActive' : 'li'}`}>
+              <Link to="/encerrar" className='flex items-center gap-4 font-medium'>
                 <FiXCircle size={22} className="svg"/>
                 Encerrar
-              </a>
+              </Link>
+            </li>
+            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/logout' ? 'liActive' : 'li'}`}>
+              <Link to="/logout" className='flex items-center gap-4 font-medium'>
+                <FiLogOut size={22} className="svg"/>
+                Logout
+              </Link>
             </li>
           </ul>
           <div className='flex gap-3 pl-[62px]'>

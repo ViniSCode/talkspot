@@ -4,18 +4,12 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages";
 import { Room } from "./pages/room";
+import { Settings } from "./pages/settings";
+import { Users } from "./pages/users";
 import './styles/global.css';
 
 
 function App() {
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //       setLoading(false)
-  //     }, 1500)
-  // }, []) element: loading ? <Loading /> : <Home />,
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -24,6 +18,14 @@ function App() {
     {
       path: "/room",
       element: <Room />,
+    },
+    {
+      path: "/users",
+      element: <Users />,
+    },
+    {
+      path: "/settings",
+      element: <Settings />,
     },
   ]);
 
