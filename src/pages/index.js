@@ -13,6 +13,7 @@ export function  Home () {
 
   async function handleLogout  () {
     await handleSignOut('/');
+    window.location.reload(true)
   };
 
   return (
@@ -21,7 +22,7 @@ export function  Home () {
         <div className="max-w-[358px] lg:max-w-[530px] mx-auto px-8 py-12 lg:px-16 lg:py-20 bg-white lg:bg-gray-200 rounded-2xl">
           <h1 className='text-center text-4xl font-medium'>Talk<span className='text-blue-500'>Spot</span></h1>
           <div className="flex flex-col items-center gap-8 mt-[72px]">
-            { user ? (
+            { !user ? (
               <button 
                 onClick={handleSignIn}
                 className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-red-500 px-4 py-4 rounded-lg transition-colors hover:bg-red-600  w-full'

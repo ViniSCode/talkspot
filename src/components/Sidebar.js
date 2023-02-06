@@ -9,6 +9,7 @@ export function Sidebar () {
   const {pathname} = useLocation();
   const {handleSignOut} = useAuth();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     isSelected(pathname);
@@ -16,7 +17,6 @@ export function Sidebar () {
 
   async function handleLogout () {
     await handleSignOut();
-    navigate('/')
   }
 
   const menuItems = [
@@ -53,6 +53,7 @@ export function Sidebar () {
             {
               menuItems.map(item => (
                 <motion.li
+                  key={item.name}
                   initial={{ backgroundColor: '#FFFFFF', color: '#000000' }}
                   animate={selected === item.href ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: '#FFFFFF', color: '#000000' }}  
                   className={`rounded-lg px-2 py-2 w-[200px]`}
@@ -72,13 +73,16 @@ export function Sidebar () {
               </span>
             </li>
           </ul>
-          <div className='flex gap-3 pl-[62px]'>
-            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-10 h-10 object-cover rounded-full"/>
-            <div>
-              <span className='block truncate max-w-[150px]'>Lorem's Name</span>
-              <span className='block text-gray-400 text-xs'>loremipsum@gmail.com</span>
+          { user && (
+            <div className='flex gap-3 pl-[62px]'>
+              <img src={user.avatar} alt="room avatar" referrerPolicy="no-referrer"  className="w-10 h-10 object-cover rounded-full"/>
+              <div>
+                <span className='block truncate max-w-[150px]'>{user.name}</span>
+                <span className='block truncate max-w-[150px] text-gray-400 text-xs'>{user.email}</span>
+              </div>
             </div>
-          </div>
+          )
+          }
         </nav>
       </div>
     </aside>

@@ -9,7 +9,7 @@ export function AuthProvider (props) {
   useEffect( () => {
     const unsubscribe = auth.onAuthStateChanged( user => {
       if (user) {
-        const { displayName, photoURL, uid } = user;
+        const { displayName, photoURL, uid, email } = user;
 
         if (!displayName || !photoURL) {
           throw new Error ('Missing information from Google Account.'); 
@@ -17,7 +17,8 @@ export function AuthProvider (props) {
         setUser({
           id: uid,
           name: displayName,
-          avatar: photoURL
+          avatar: photoURL,
+          email: email,
         })
       }
     })
@@ -38,7 +39,7 @@ export function AuthProvider (props) {
     // if user exists
     if (result.user) {
       //get user info
-      const { displayName, photoURL, uid } = result.user
+      const { displayName, photoURL, uid, email } = result.user
 
       //if something is missing throw error
       if (!displayName || !photoURL) {
@@ -48,7 +49,8 @@ export function AuthProvider (props) {
       setUser({
         id: uid,
         name: displayName,
-        avatar: photoURL
+        avatar: photoURL,
+        email: email
       });
     }
   }
@@ -60,6 +62,8 @@ export function AuthProvider (props) {
     
     // if user exists
     setUser({})
+    window.location.reload(true);
+    window.location.href = "/";
   }
 
   

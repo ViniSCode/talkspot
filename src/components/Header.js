@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FiCopy, FiUserPlus } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Menu } from './Menu/Menu';
 import { MobileMenuItems } from './Menu/MobileMenuItems';
 export function Header() {
@@ -28,7 +29,9 @@ export function Header() {
 
   return (
     <header className="flex items-center justify-between lg:justify-end border-b pb-6 lg:pb-3">
-      <span className='lg:hidden block text-[30px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
+      <Link to='/'>
+        <span className='lg:hidden block text-[30px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
+      </Link>
       <div className='flex item-center gap-4 relative'>
         <button className='bg-blue-500 text-white rounded-lg px-2 py-2 lg:mr-[58px]' onClick={() => setModalShareActive(!modalShareActive)}>
           <FiUserPlus size={18}/>
