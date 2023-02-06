@@ -50,7 +50,14 @@ body {
 
   @media (min-width: 1024px) {
     .vh-height {
-      height: calc(100vh - 240px);
+      height: calc(100vh - 310px);
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .container {
+      display: grid;
+      grid-template-columns: 20rem auto;
     }
   }
 

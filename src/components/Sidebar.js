@@ -13,7 +13,9 @@ export function Sidebar () {
 
   return (
     <aside className="hidden lg:block vh-height-border">
-      <span className='pl-[62px] text-[22px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
+      <Link to='/'>
+        <span className='pl-[62px] text-[22px] font-medium'>Talk<span className='text-blue-500'>Spot</span></span>
+      </Link>
       <div className='mt-[13px] border-r border-t h-full'>
         <nav className="flex flex-col h-full justify-between pb-6">
           <ul className='pl-[62px] flex flex-col gap-8 mt-10'>

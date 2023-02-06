@@ -14,7 +14,7 @@ export function Room () {
 
 
   return (
-    <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
+    <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <Sidebar />
       </div>

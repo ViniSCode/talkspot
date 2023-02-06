@@ -3,7 +3,7 @@ import { Sidebar } from '../components/Sidebar';
 
 export function Settings () {
   return (
-    <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
+    <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <Sidebar />
       </div>
@@ -11,7 +11,7 @@ export function Settings () {
         
       <Header />
 
-        <main className='mt-5 md:mt-8 max-w-full md:max-w-[400px] md:mx-auto lg:max-w-full lg:mt-4 lg:pr-[58px] lg:pl-12'>
+        <main className='mt-5 md:mt-8 max-w-full md:max-w-[480px] md:mx-auto lg:max-w-full lg:mt-4 lg:pr-[58px] lg:pl-12'>
           <h3 className='text-2xl mt-12 font-medium'>Room's Name Settings</h3>
           <div className='mt-8'>
             <span>Image</span>
