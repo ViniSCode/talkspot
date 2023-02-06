@@ -1,10 +1,30 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FiCopy, FiUserPlus } from 'react-icons/fi';
-import { Menu } from '../components/Menu';
-
+import { Menu } from './Menu/Menu';
+import {MobileMenuItems} from './Menu/MobileMenuItems'
 export function Header() {
   const [modalShareActive, setModalShareActive] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const sidebarVariants = {
+    open: {
+      y: '0%',
+      transition: {
+        type: 'linear',
+        stiffness: 300,
+        damping: 20
+      }
+    },
+    closed: {
+      y: '-100%',
+      transition: {
+        type: 'linear',
+        stiffness: 300,
+        damping: 20
+      }
+    }
+  };
 
   return (
     <header className="flex items-center justify-between lg:justify-end border-b pb-6 lg:pb-3">
@@ -27,7 +47,12 @@ export function Header() {
           </span>
         </motion.div>
         <div className='lg:hidden flex items-center justify-center'>
-          <Menu />
+          <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+          <div className='fixed inset-0 h-full w-full bg-transparent'>
+            <motion.div variants={sidebarVariants} initial="closed" animate={isMenuOpen ? 'open' : 'closed'} className="absolute h-full w-full z-40 bg-blue-500">
+              <MobileMenuItems isMenuOpen={isMenuOpen}/>
+            </motion.div>
+          </div>
         </div>
       </div>
     </header>
