@@ -16,13 +16,6 @@ Check out a live demo of the app at: work in progress
 -   Tailwindcss
 - Framer motion
 
-## Getting Started
-
-1.  Clone or download the repository
-2.  Run `npm install` or `yarn install` to install the required dependencies
-3.  Run `npm start` or `yarn start` to start the development server
-4.  Open [http://localhost:3000](http://localhost:3000/) to view the app in your browser
-
 ## Deployment
 
 The app is deployed and ready to use at: Work in progress
