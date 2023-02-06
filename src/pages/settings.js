@@ -12,7 +12,7 @@ export function Settings () {
       <Header />
 
         <main className='mt-5 md:mt-8 max-w-full md:max-w-[400px] md:mx-auto lg:max-w-full lg:mt-4 lg:pr-[58px] lg:pl-12'>
-          <h3 className='text-2xl mt-12 font-medium'>Account</h3>
+          <h3 className='text-2xl mt-12 font-medium'>Room's Name Settings</h3>
           <div className='mt-8'>
             <span>Image</span>
             <div className='flex items-center flex-col lg:flex-row gap-3 mt-4'>
