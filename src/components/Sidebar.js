@@ -22,7 +22,7 @@ export function Sidebar () {
               animate={selected === '/room' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
               className={`rounded-lg px-2 py-2 w-[200px]`}
             >
-              <Link to="/room" className={`flex items-center gap-4 font-medium ${selected != '/room' && 'hover:text-blue-500'}`}>
+              <Link to="/room" className={`flex items-center gap-4 font-medium ${selected !== '/room' && 'hover:text-blue-500'}`}>
                 <FiMessageSquare size={22} className="svg"/>
                 Messages
               </Link>
@@ -32,7 +32,7 @@ export function Sidebar () {
               animate={selected === '/users' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
               className={`rounded-lg px-2 py-2 w-[200px]`}
             >
-              <Link to="/users" className={`flex items-center gap-4 font-medium ${selected != '/users' && 'hover:text-blue-500'}`}>
+              <Link to="/users" className={`flex items-center gap-4 font-medium ${selected !== '/users' && 'hover:text-blue-500'}`}>
                 <FiUsers size={22} className="svg"/>
                 Users
               </Link>
@@ -42,19 +42,19 @@ export function Sidebar () {
               animate={selected === '/settings' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
               className={`rounded-lg px-2 py-2 w-[200px]`}
             >
-              <Link to="/settings" className={`flex items-center gap-4 font-medium ${selected != '/settings' && 'hover:text-blue-500'}`}>
+              <Link to="/settings" className={`flex items-center gap-4 font-medium ${selected !== '/settings' && 'hover:text-blue-500'}`}>
                 <FiSettings size={22} className="svg"/>
                 Settings
               </Link>
             </motion.li>
             <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/encerrar' ? 'liActive' : 'li'}`}>
-              <Link to="/encerrar" className={`flex items-center gap-4 font-medium ${selected != '/encerrar' && 'hover:text-blue-500'}`}>
+              <Link to="/encerrar" className={`flex items-center gap-4 font-medium ${selected !== '/encerrar' && 'hover:text-blue-500'}`}>
                 <FiXCircle size={22} className="svg"/>
                 Encerrar
               </Link>
             </li>
             <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/logout' ? 'liActive' : 'li'}`}>
-              <Link to="/logout" className={`flex items-center gap-4 font-medium ${selected != '/logout' && 'hover:text-blue-500'}`}>
+              <Link to="/logout" className={`flex items-center gap-4 font-medium ${selected !== '/logout' && 'hover:text-blue-500'}`}>
                 <FiLogOut size={22} className="svg"/>
                 Logout
               </Link>
