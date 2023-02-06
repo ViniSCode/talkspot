@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiLogOut, FiMessageSquare, FiSettings, FiUsers, FiXCircle } from "react-icons/fi";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export function Sidebar () {
   const [selected, isSelected] = useState();
   const {pathname} = useLocation();
   const {handleSignOut} = useAuth();
-  const navigate = useNavigate();
   const { user } = useAuth();
 
   useEffect(() => {
