@@ -1,15 +1,46 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiLogOut, FiMessageSquare, FiSettings, FiUsers, FiXCircle } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export function Sidebar () {
   const [selected, isSelected] = useState();
   const {pathname} = useLocation();
+  const {handleSignOut} = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     isSelected(pathname);
   }, [pathname])
+
+  async function handleLogout () {
+    await handleSignOut();
+    navigate('/')
+  }
+
+  const menuItems = [
+    {
+      href: '/room',
+      name: 'Messages',
+      icon: <FiMessageSquare size={22} className="svg"/>
+    },
+    {
+      href: '/users',
+      name: 'Users',
+      icon: <FiUsers size={22} className="svg"/>
+    },
+    {
+      href: '/settings',
+      name: 'Settings',
+      icon: <FiSettings size={22} className="svg"/>
+    },
+    {
+      href: '/delete',
+      name: 'Delete',
+      icon: <FiXCircle size={22} className="svg"/>
+    }
+  ]
 
   return (
     <aside className="hidden lg:block vh-height-border">
@@ -19,47 +50,26 @@ export function Sidebar () {
       <div className='mt-[13px] border-r border-t h-full'>
         <nav className="flex flex-col h-full justify-between pb-6">
           <ul className='pl-[62px] flex flex-col gap-8 mt-10'>
-            <motion.li
-              exit={{ backgroundColor: 'transparent', color: '#000000' }}
-              animate={selected === '/room' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
-              className={`rounded-lg px-2 py-2 w-[200px]`}
-            >
-              <Link to="/room" className={`flex items-center gap-4 font-medium ${selected !== '/room' && 'hover:text-blue-500'}`}>
-                <FiMessageSquare size={22} className="svg"/>
-                Messages
-              </Link>
-            </motion.li>
-            <motion.li
-              exit={{ backgroundColor: 'transparent', color: '#000000' }}
-              animate={selected === '/users' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
-              className={`rounded-lg px-2 py-2 w-[200px]`}
-            >
-              <Link to="/users" className={`flex items-center gap-4 font-medium ${selected !== '/users' && 'hover:text-blue-500'}`}>
-                <FiUsers size={22} className="svg"/>
-                Users
-              </Link>
-            </motion.li>
-            <motion.li
-              exit={{ backgroundColor: 'transparent', color: '#000000' }}
-              animate={selected === '/settings' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
-              className={`rounded-lg px-2 py-2 w-[200px]`}
-            >
-              <Link to="/settings" className={`flex items-center gap-4 font-medium ${selected !== '/settings' && 'hover:text-blue-500'}`}>
-                <FiSettings size={22} className="svg"/>
-                Settings
-              </Link>
-            </motion.li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/encerrar' ? 'liActive' : 'li'}`}>
-              <Link to="/encerrar" className={`flex items-center gap-4 font-medium ${selected !== '/encerrar' && 'hover:text-blue-500'}`}>
-                <FiXCircle size={22} className="svg"/>
-                Encerrar
-              </Link>
-            </li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/logout' ? 'liActive' : 'li'}`}>
-              <Link to="/logout" className={`flex items-center gap-4 font-medium ${selected !== '/logout' && 'hover:text-blue-500'}`}>
+            {
+              menuItems.map(item => (
+                <motion.li
+                  initial={{ backgroundColor: '#FFFFFF', color: '#000000' }}
+                  animate={selected === item.href ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: '#FFFFFF', color: '#000000' }}  
+                  className={`rounded-lg px-2 py-2 w-[200px]`}
+                >
+                  <Link to={item.href} className={`flex items-center gap-4 font-medium ${pathname === item.href ? 'liActive' : 'li'}`}>
+                    {item.icon}
+                    {item.name}
+                  </Link>
+                </motion.li>
+              ))
+            }
+
+            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/logout' ? 'liActive' : 'li'}`} onClick={handleLogout}>
+              <span className={`cursor-pointer flex items-center gap-4 font-medium ${selected !== '/logout' && 'hover:text-blue-500'}`}>
                 <FiLogOut size={22} className="svg"/>
                 Logout
-              </Link>
+              </span>
             </li>
           </ul>
           <div className='flex gap-3 pl-[62px]'>

@@ -63,6 +63,11 @@ body {
 
   .li {
     font-size: 15px;
+    font-weight: medium;
+  }
+
+.li:hover {
+    color: #3A35DF;
   }
 
   .modal-shadow {

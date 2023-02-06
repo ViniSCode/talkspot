@@ -2,7 +2,9 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import { Home } from "./pages";
+import { DeleteRoom } from "./pages/delete";
 import { Room } from "./pages/room";
 import { Settings } from "./pages/settings";
 import { Users } from "./pages/users";
@@ -27,10 +29,16 @@ function App() {
       path: "/settings",
       element: <Settings />,
     },
+    {
+      path: "/delete",
+      element: <DeleteRoom />,
+    },
   ]);
 
   return (
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 
