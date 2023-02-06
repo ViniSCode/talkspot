@@ -2,14 +2,14 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FiCopy, FiUserPlus } from 'react-icons/fi';
 import { Menu } from './Menu/Menu';
-import {MobileMenuItems} from './Menu/MobileMenuItems'
+import { MobileMenuItems } from './Menu/MobileMenuItems';
 export function Header() {
   const [modalShareActive, setModalShareActive] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const sidebarVariants = {
     open: {
-      y: '0%',
+      x: '0%',
       transition: {
         type: 'linear',
         stiffness: 300,
@@ -17,7 +17,7 @@ export function Header() {
       }
     },
     closed: {
-      y: '-100%',
+      x: '100%',
       transition: {
         type: 'linear',
         stiffness: 300,
@@ -38,8 +38,8 @@ export function Header() {
           initial={{opacity: 0}}
           exit={{opacity: 0}}
           animate={modalShareActive ? {opacity: 1, y: 0} : {opacity: 0, y: 20}} 
-          className='absolute modal-shadow top-12 right-[58px] bg-white h-20 w-64 rounded-2xl flex justify-center items-center'>
-          <span className='flex items-center gap-2 text-black border-2 border-blue-500 rounded-[10px] pr-2 cursor-pointer'>
+          className='absolute modal-shadow top-12 right-10 lg:right-[58px] bg-white h-20 w-60 rounded-tl-2xl rounded-b-2xl flex justify-center items-center'>
+          <span className='flex items-center gap-2 text-black border-2 border-blue-500 rounded-[10px] pr-2 cursor-pointer text-sm lg:text-base'>
             <span className='bg-blue-500 p-2 rounded-lg'>
               <FiCopy size={22} className="text-white"/>
             </span>
@@ -48,11 +48,9 @@ export function Header() {
         </motion.div>
         <div className='lg:hidden flex items-center justify-center'>
           <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
-          <div className='fixed inset-0 h-full w-full bg-transparent'>
-            <motion.div variants={sidebarVariants} initial="closed" animate={isMenuOpen ? 'open' : 'closed'} className="absolute h-full w-full z-40 bg-blue-500">
-              <MobileMenuItems isMenuOpen={isMenuOpen}/>
+            <motion.div variants={sidebarVariants} initial="closed" animate={isMenuOpen ? 'open' : 'closed'} className="fixed inset-0 h-full w-full z-20 bg-blue-500">
+              <MobileMenuItems isMenuOpen={isMenuOpen} />
             </motion.div>
-          </div>
         </div>
       </div>
     </header>

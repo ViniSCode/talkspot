@@ -14,11 +14,11 @@ export function MobileMenuItems ({isMenuOpen}) {
   return (
     <>
       <nav className={`flex-col h-full justify-center ${isMenuOpen ? 'flex' : 'hidden'}`}>
-          <ul className='pl-[62px] flex flex-col gap-5 self-center'>
+          <ul className='flex flex-col gap-5 self-center'>
             <motion.li
-              exit={{ backgroundColor: 'transparent', color: '#000000' }}
-              animate={selected === '/room' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
-              className={`rounded-lg px-2 py-2 w-[200px]`}
+              exit={{ backgroundColor: 'transparent', color: '#FFFFFF' }}
+              animate={selected === '/room' ? { backgroundColor: '#FFFF', color: '#3A35DF' } : { backgroundColor: 'transparent', color: '#FFFFFF'}}  
+              className={`rounded-lg px-2 py-2 w-[200px] mx-auto hover:underline flex items-center justify-center`}
             >
               <Link to="/room" className='flex items-center gap-4 font-medium'>
                 <FiMessageSquare size={22} className="svg"/>
@@ -26,9 +26,9 @@ export function MobileMenuItems ({isMenuOpen}) {
               </Link>
             </motion.li>
             <motion.li
-              exit={{ backgroundColor: 'transparent', color: '#000000' }}
-              animate={selected === '/users' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
-              className={`rounded-lg px-2 py-2 w-[200px]`}
+              exit={{ backgroundColor: 'transparent', color: '#FFFFFF' }}
+              animate={selected === '/users' ? { backgroundColor: '#FFFF', color: '#3A35DF' } : { backgroundColor: 'transparent', color: '#FFFFFF' }}  
+              className={`rounded-lg px-2 py-2 w-[200px] mx-auto hover:underline flex items-center justify-center`}
             >
               <Link to="/users" className='flex items-center gap-4 font-medium'>
                 <FiUsers size={22} className="svg"/>
@@ -36,23 +36,23 @@ export function MobileMenuItems ({isMenuOpen}) {
               </Link>
             </motion.li>
             <motion.li
-              exit={{ backgroundColor: 'transparent', color: '#000000' }}
-              animate={selected === '/settings' ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: 'transparent', color: '#000000' }}  
-              className={`rounded-lg px-2 py-2 w-[200px]`}
+              exit={{ backgroundColor: 'transparent', color: '#FFFFFF' }}
+              animate={selected === '/settings' ? { backgroundColor: '#FFFF', color: '#3A35DF' } : { backgroundColor: 'transparent', color: '#FFFFFF' }}  
+              className={`rounded-lg px-2 py-2 w-[200px] mx-auto hover:underline flex items-center justify-center`}
             >
               <Link to="/settings" className='flex items-center gap-4 font-medium'>
                 <FiSettings size={22} className="svg"/>
                 Settings
               </Link>
             </motion.li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/encerrar' ? 'liActive' : 'li'}`}>
-              <Link to="/encerrar" className='flex items-center gap-4 font-medium'>
+            <li className={`rounded-lg px-2 py-2 w-[200px] hover:underline transition-colors ${pathname === '/encerrar' ? 'liActive' : 'li'}`}>
+              <Link to="/encerrar" className='flex items-center justify-center gap-4 font-medium text-white'>
                 <FiXCircle size={22} className="svg"/>
                 Encerrar
               </Link>
             </li>
-            <li className={`rounded-lg px-2 py-2 w-[200px] transition-colors ${pathname === '/logout' ? 'liActive' : 'li'}`}>
-              <Link to="/logout" className='flex items-center gap-4 font-medium'>
+            <li className={`rounded-lg px-2 py-2 w-[200px] hover:underline transition-colors text-white ${pathname === '/logout' ? 'liActive' : 'li'}`}>
+              <Link to="/logout" className='gap-4 font-medium flex items-center justify-center'>
                 <FiLogOut size={22} className="svg"/>
                 Logout
               </Link>
