@@ -1,9 +1,13 @@
 import { Header } from '../components/Header';
 import { ListUsers } from '../components/ListUsers';
+import Login from '../components/Login';
 import { Sidebar } from '../components/Sidebar';
+import { useAuth } from '../hooks/useAuth';
 
 export function Users () {
-  return (
+  const {user} = useAuth()
+
+  return user ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <Sidebar />
@@ -17,5 +21,7 @@ export function Users () {
         </main>
       </div>
     </div>
+  ): (
+    <Login />
   )
 }

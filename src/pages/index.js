@@ -7,7 +7,10 @@ export function  Home () {
   const {user, handleSignInWithGoogle, handleSignOut} = useAuth();
 
   async function handleSignIn  () {
-    await handleSignInWithGoogle();
+    if (!user) {
+      await handleSignInWithGoogle();
+    }
+    
     navigate('/room')
   };
 
@@ -52,9 +55,13 @@ export function  Home () {
                 <label htmlFor="code"></label>
                 <input type="text" id="roomCode" name="roomCode" placeholder="Digite o código da sala" className="px-4 py-4 rounded-lg border border-gray-500 text-gray-500 placeholder:text-gray-500 w-full placeholder:text-sm lg:placeholder:text-base" />
               </div>
-              <a href="/room" className='text-center font-semibold text-[17px] text-white bg-blue-500 px-4 py-4 rounded-lg transition-colors hover:bg-blue-600  w-full'>
+              <button 
+                onClick={handleSignIn}
+                className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-blue-500 px-4 py-4 rounded-lg transition-colors hover:bg-blue-600  w-full'
+              >
+                <BsGoogle className="text-white w-4 h-4 lg:w-5 lg:h-5" />
                 Entrar na sala
-              </a>
+              </button>
             </div>
           </div>
         </div>

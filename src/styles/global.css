@@ -74,4 +74,26 @@ body {
     box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.096);
   }
 
+
+  .msg-mine {
+    display: flex; 
+    flex-direction: column;
+    align-items: end;
+    marin-top: 1.5rem;
+  }
+  .msg-mine > .msg-name-mine{
+    order: 1;
+  }
+
+  .msg.mine > .msg-img-mine{
+    order: 2;
+  }
+
+  .msg-mine {
+    color: white;
+  }
+
+  .msg-mine > p {
+    background-color: #3A35DF;
+  }
 }

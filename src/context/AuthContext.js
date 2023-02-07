@@ -9,7 +9,7 @@ export function AuthProvider (props) {
   useEffect( () => {
     const unsubscribe = auth.onAuthStateChanged( user => {
       if (user) {
-        const { displayName, photoURL, uid, email } = user;
+        const { displayName, photoURL, uid, email,  } = user;
 
         if (!displayName || !photoURL) {
           throw new Error ('Missing information from Google Account.'); 
