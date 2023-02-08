@@ -27,14 +27,6 @@ body {
     transform: translate(-50%, -50%);
   }
 
-  .balloon {
-    border-radius: 0px 16px 16px 16px;
-  }
-
-  .balloon-user {
-    border-radius: 16px 0 16px 16px;
-  }
-
   .vh-height {
     height: calc(100vh - 320px);
   }
@@ -78,22 +70,55 @@ body {
   .msg-mine {
     display: flex; 
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     marin-top: 1.5rem;
   }
-  .msg-mine > .msg-name-mine{
+  .msg-mine > div > span{
+    order: 0;
+    color: black;
+  }
+
+  .msg.mine > div > img{
     order: 1;
   }
 
-  .msg.mine > .msg-img-mine{
-    order: 2;
-  }
-
-  .msg-mine {
-    color: white;
-  }
-
-  .msg-mine > p {
+  .msg-mine > div > p {
     background-color: #3A35DF;
+    border-radius: 16px 0 16px 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 12px;
+    margin-right: 52px;
   }
+
+  
+
+  .msg-other {
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    marin-top: 1.5rem;
+  }
+  .msg-other > div > span{
+    order: 1;
+    color: black;
+  }
+
+  .msg.other > div > img{
+    order: 0;
+  }
+
+  .msg-other > div > p {
+    background-color: white;
+    border-radius: 0px 16px 16px 16px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 12px;
+    margin-left: 52px;
+  }
+
 }

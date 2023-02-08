@@ -14,9 +14,12 @@ export function  Home () {
     navigate('/room')
   };
 
-  async function handleLogout  () {
-    await handleSignOut('/');
-    window.location.reload(true)
+  async function handleCreateRoom  () {
+    if (!user) {
+      await handleSignInWithGoogle();
+    } else {
+      navigate('/create');
+    }
   };
 
   return (
@@ -35,11 +38,11 @@ export function  Home () {
               </button>
             ) : (
               <button 
-                onClick={handleLogout}
+                onClick={handleCreateRoom}
                 className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-red-500 px-4 py-4 rounded-lg transition-colors hover:bg-red-600  w-full'
               >
                 <FiLogOut className="text-white w-4 h-4 lg:w-5 lg:h-5" />
-                LogOut
+                Criar uma sala
               </button>
             ) }
               
