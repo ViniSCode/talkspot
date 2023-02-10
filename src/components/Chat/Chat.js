@@ -4,6 +4,8 @@ import RoomInfo from '../Room/RoomInfo';
 import MessageInput from './MessageInput';
 
 
+// here needs to connect user to the current room that they just created
+// for example localhost:8080/rooms/-GNs1935uDN90808/ so anyone with the room code -GNs1935uDN90808, can access the chat
 const socket = io('http://localhost:8080/', {
   transports: ['websocket']
 });

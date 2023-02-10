@@ -5,6 +5,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from "./context/AuthContext";
+import { RoomProvider } from "./context/RoomContext";
 import { Home } from "./pages";
 import { AdminRoom } from "./pages/AdminRoom";
 import { CreateRoom } from "./pages/create";
@@ -48,8 +49,10 @@ function App() {
 
   return (
     <AuthProvider>
-      <ToastContainer />
-      <RouterProvider router={router} />
+      <RoomProvider>
+        <ToastContainer />
+        <RouterProvider router={router} />
+      </RoomProvider>
     </AuthProvider>
   );
 }

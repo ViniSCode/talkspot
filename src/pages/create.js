@@ -1,4 +1,4 @@
-import { ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useState } from 'react';
 import { MdOutlineCreate } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
@@ -6,15 +6,32 @@ import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import ImageUpload from '../components/ImageUpload';
 import { useAuth } from '../hooks/useAuth';
+import { useRoom } from '../hooks/useRoom';
 import { database, storage } from '../services/firebase';
 
 export function  CreateRoom () {
+  const {handleSetRoomId} = useRoom()
   const [roomName, setRoomName] = useState("");
   const [roomImage, setRoomImage] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
 
   const navigate = useNavigate();
-  const {user, handleSignInWithGoogle, handleSignOut} = useAuth();
+  const {user} = useAuth();
+  
+  async function getImageURL() {
+    try {
+      const imageRef = ref(storage, `images/${roomImage.name + v4()}`)
+      await uploadBytes(imageRef, roomImage).then(() => {
+        toast.success("Image uploaded")
+      });
+  
+      const imageURL = await getDownloadURL(imageRef);
+      console.error(imageURL);
+
+      return imageURL;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   async function handleCreateRoom () {    
     
@@ -22,27 +39,27 @@ export function  CreateRoom () {
       toast.warning('Please complete all required fields before creating the room')
       return;
     }
-    const roomRef = database.ref('rooms');
     
-    const imageRef = ref(storage, `images/${roomImage.name + v4()}`)
-    await uploadBytes(imageRef, roomImage).then(() => {
-      toast.success("Image uploaded")
+    const image = await getImageURL()
+  
+    if (!image) {
+      toast.error("Image format not supported")
+      return;
+    }
+
+    const roomRef = database.ref('rooms');
+    const firebaseRoom = await roomRef.push({
+      name: roomName,
+      author: {
+        email: user.email,
+        name: user.name
+      },
+      image: image
     });
 
-    await imageRef.getDownloadURL().then(url => console.log(url))
 
-    // console.log(imageURL)
-
-    // const firebaseRoom = await roomRef.push({
-    //   name: roomName,
-    //   author: {
-    //     email: user.email,
-    //     name: user.name
-    //   },
-    //   image: roomImage
-    // })
-
-    // navigate(`/admin/rooms/${firebaseRoom.key}`)
+    handleSetRoomId(firebaseRoom.key);
+    navigate(`/admin/rooms/${firebaseRoom.key}`)
   }
 
   

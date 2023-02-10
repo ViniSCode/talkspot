@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
-import { FiLogOut, FiMessageSquare, FiSettings, FiUsers, FiXCircle } from "react-icons/fi";
+import { FiLogOut, FiMessageSquare, FiSettings, FiXCircle } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from '../../hooks/useAuth';
+import { useRoom } from '../../hooks/useRoom';
 
 export function MobileMenuItems ({isMenuOpen}) {
   const [selected, isSelected] = useState();
   const {handleSignOut} = useAuth();
   const {pathname} = useLocation();
+  const {roomId} = useRoom();
 
   useEffect(() => {
     isSelected(pathname);
@@ -19,15 +21,15 @@ export function MobileMenuItems ({isMenuOpen}) {
 
   const menuItems = [
     {
-      href: '/room',
+      href: `/rooms/${roomId}`,
       name: 'Messages',
       icon: <FiMessageSquare size={22} className="svg"/>
     },
-    {
-      href: '/users',
-      name: 'Users',
-      icon: <FiUsers size={22} className="svg"/>
-    },
+    // {
+    //   href: '/users',
+    //   name: 'Users',
+    //   icon: <FiUsers size={22} className="svg"/>
+    // },
     {
       href: '/settings',
       name: 'Settings',

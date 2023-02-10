@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FiLogOut, FiMessageSquare, FiSettings, FiUsers, FiXCircle } from "react-icons/fi";
+import { FiLogOut, FiMessageSquare, FiSettings, FiXCircle } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useRoom } from "../hooks/useRoom";
 
 export function Sidebar () {
+  const { roomId }  = useRoom();
   const [selected, isSelected] = useState();
   const {pathname} = useLocation();
   const {handleSignOut} = useAuth();
@@ -20,15 +22,15 @@ export function Sidebar () {
 
   const menuItems = [
     {
-      href: '/room',
+      href: `/admin/rooms/${roomId}`,
       name: 'Messages',
       icon: <FiMessageSquare size={22} className="svg"/>
     },
-    {
-      href: '/users',
-      name: 'Users',
-      icon: <FiUsers size={22} className="svg"/>
-    },
+    // {
+    //   href: '/users',
+    //   name: 'Users',
+    //   icon: <FiUsers size={22} className="svg"/>
+    // },
     {
       href: '/settings',
       name: 'Settings',

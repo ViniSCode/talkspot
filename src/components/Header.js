@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { FiCopy, FiUserPlus } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu } from './Menu/Menu';
 import { MobileMenuItems } from './Menu/MobileMenuItems';
 export function Header() {
   const [modalShareActive, setModalShareActive] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {pathname} = useLocation();
 
   const sidebarVariants = {
     open: {
@@ -41,12 +42,12 @@ export function Header() {
           initial={{opacity: 0}}
           exit={{opacity: 0}}
           animate={modalShareActive ? {opacity: 1, y: 0} : {opacity: 0, y: 20}} 
-          className='absolute modal-shadow top-12 right-10 lg:right-[58px] bg-white h-20 w-60 lg:w-64 rounded-tl-2xl rounded-b-2xl flex justify-center items-center'>
+          className='absolute modal-shadow top-12 right-10 lg:right-[58px] p-4 bg-white h-20 w-fit lg:w-fit whitespace-nowrap rounded-tl-2xl rounded-b-2xl flex justify-center items-center'>
           <span className='flex items-center gap-2 text-black border-2 border-blue-500 rounded-[10px] pr-2 cursor-pointer text-sm lg:text-base'>
             <span className='bg-blue-500 p-2 rounded-lg'>
               <FiCopy size={22} className="text-white"/>
             </span>
-            -NNYTznfzfxuT241f06N
+            {pathname && pathname.split('/')[3]}
           </span>
         </motion.div>
         <div className='lg:hidden flex items-center justify-center'>
