@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
+import { useRoom } from '../../hooks/useRoom';
 import RoomInfo from '../Room/RoomInfo';
 import MessageInput from './MessageInput';
-
-
 // here needs to connect user to the current room that they just created
 // for example localhost:8080/rooms/-GNs1935uDN90808/ so anyone with the room code -GNs1935uDN90808, can access the chat
-const socket = io('http://localhost:8080/', {
-  transports: ['websocket']
-});
 
 export function Chat ({chatMessagesRef, user, room}) {
-  
-  socket.on('connect', () => console.log('[IO] Connect => New Connection'));
+  const {roomId} = useRoom()  
   const myId = user.email;
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -25,7 +19,8 @@ export function Chat ({chatMessagesRef, user, room}) {
   
   function handleCreateMessage () {  
     if (newMessage.trim() && messages.length > 0) {
-      socket.emit('chat.message', { 
+      setMessages([...messages, {
+        roomId: roomId,
         id: myId,
         user: {
           id: myId,
@@ -34,21 +29,22 @@ export function Chat ({chatMessagesRef, user, room}) {
           avatar: user.avatar
         },
         message: newMessage
-      })
+      }])
 
       setNewMessage('');
       scrollToLastMessage();
     } else if (newMessage.trim()) {
-        socket.emit('chat.message', { 
+      setMessages([...messages, {
+        roomId: roomId,
+        id: myId,
+        user: {
           id: myId,
-          user: {
-            id: myId,
-            isLastMessageFromTheSameUser: myId === false,
-            name: user.name,
-            avatar: user.avatar
-          },
-          message: newMessage
-        })
+          isLastMessageFromTheSameUser: false,
+          name: user.name,
+          avatar: user.avatar
+        },
+        message: newMessage
+      }])
 
         setNewMessage('');
         scrollToLastMessage();
@@ -56,14 +52,9 @@ export function Chat ({chatMessagesRef, user, room}) {
   }
   
   useEffect(() => {
-    function handleNewMessage (newMsg) {
-      setMessages([...messages, newMsg]);
-    }
-    
-    socket.on('chat.message', handleNewMessage);
     scrollToLastMessage();
-    return () => socket.off('chat.message', handleNewMessage);
   }, [messages, scrollToLastMessage]) 
+
 
   return (
     <section>
