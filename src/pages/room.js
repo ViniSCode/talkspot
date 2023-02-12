@@ -29,7 +29,7 @@ export function Room () {
         const roomInfo = roomRef.val();
         const adm = roomInfo.author.email === user.email ? true : false;
         if (adm === true) {
-          window.location.href = `/admin/rooms/${roomId}`;
+          navigate(`/admin/rooms/${roomId}`);
         }
       } 
     

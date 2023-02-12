@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Chat } from '../components/Chat/Chat';
 import { Header } from '../components/Header';
 import Login from '../components/Login';
@@ -13,16 +13,20 @@ import { database } from '../services/firebase';
 export function AdminRoom () {
   const [isAdmin, setIsAdmin] =  useState(false)
   const [room, setRoom] = useState({});
-  const {pathname} = useLocation();
   const { user } = useAuth();
   const chatMessagesRef = useRef(null);
-  const {handleSetRoomId, roomId} = useRoom();
-    
+  const {handleSetRoomId, roomId } = useRoom();
+  const navigate = useNavigate();
+
+  console.log('roomId  => ', roomId);
+
   useEffect(() => {
     if (window.location.pathname.split('/')[1] === 'admin') {
       handleSetRoomId(window.location.pathname.split('/')[3])
     }
   }, [])
+
+  // console.log(roomId)
 
   useEffect(() => {
     if (roomId && user) {
@@ -32,7 +36,7 @@ export function AdminRoom () {
         const adm = roomInfo.author.email === user.email;
 
         if (!adm) {
-          window.location.href = `/rooms/${roomId}`;
+          navigate(`/rooms/${roomId}`);
         } 
         if (adm === true) {
           setIsAdmin(true);
@@ -42,8 +46,6 @@ export function AdminRoom () {
       FetchRoomInfo();
     }
   }, [user]);
-  
-
 
   // Scroll to last message
   useEffect(() => {
@@ -54,17 +56,15 @@ export function AdminRoom () {
 
   // get Room Data
   useEffect(() => {
-    const roomId = pathname.split('/')[3];
-
     const FetchRoomData = async () => {
       const roomRef = await database.ref(`rooms/${roomId}`).get();
       setRoom(roomRef.val())
     } 
 
     FetchRoomData();
-  }, [])
-
-  return user && room && roomId && isAdmin ? (
+  }, [roomId])
+  
+  return user && room && roomId && isAdmin  ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <Sidebar />
@@ -74,12 +74,12 @@ export function AdminRoom () {
       <Header />
 
         <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4 lg:pr-[58px]'>
-         <Chat chatMessagesRef={chatMessagesRef} user={user} roomId={pathname} room={room}/>
+         <Chat chatMessagesRef={chatMessagesRef} user={user} roomId={roomId} room={room}/>
         </main>
       </div>
     </div>
-  ) : !user ? (
-    <Login />
+  ) : !user && roomId ? (
+    <Login roomId={roomId}/>
   ): !room && (
     <Spinner />    
   ) 
