@@ -18,32 +18,31 @@ export function AdminRoom () {
   const {handleSetRoomId, roomId } = useRoom();
   const navigate = useNavigate();
 
-  console.log('roomId  => ', roomId);
-
   useEffect(() => {
     if (window.location.pathname.split('/')[1] === 'admin') {
       handleSetRoomId(window.location.pathname.split('/')[3])
     }
   }, [])
 
-  // console.log(roomId)
-
   useEffect(() => {
     if (roomId && user) {
       async function  FetchRoomInfo () {
         const roomRef = await database.ref(`rooms/${roomId}`).get();
         const roomInfo = roomRef.val();
-        const adm = roomInfo?.author.email === user.email;
 
-        if (!adm) {
-          navigate(`/rooms/${roomId}`);
-        } 
-        if (adm === true) {
-          setIsAdmin(true);
+        if (roomInfo) {
+          const adm = roomInfo.author.email === user.email;
+  
+          if (!adm) {
+            navigate(`/rooms/${roomId}`);
+          } 
+          if (adm === true) {
+            setIsAdmin(true);
+          }
         }
       } 
     
-      FetchRoomInfo();
+      const roomData = FetchRoomInfo();
     }
   }, [user]);
 
@@ -63,6 +62,8 @@ export function AdminRoom () {
 
     FetchRoomData();
   }, [roomId])
+
+  
   
   return user && room && roomId && isAdmin  ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
