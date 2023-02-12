@@ -1,21 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const RoomContext = createContext({});
 
 export function RoomProvider (props) {
   const [roomId, setRoomId] = useState("");
 
-  useEffect(() => {
-    let storedRoomId;
-    if (typeof window !== "undefined") {
-      storedRoomId = localStorage.getItem("@talkspot:roomId");
-
-      if (storedRoomId) {
-        setRoomId(JSON.parse(storedRoomId));
-      }
-    }
-  }, []);
-  
   function handleSetRoomId (id) {
     setRoomId(id);
     
@@ -28,8 +17,6 @@ export function RoomProvider (props) {
       );
     }
   }
- 
-
   
   return (
     <RoomContext.Provider value={{ handleSetRoomId, roomId }}>

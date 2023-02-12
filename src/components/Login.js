@@ -1,12 +1,16 @@
 import React from 'react';
 import { BsGoogle } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
-function Login() {
+function Login({roomId}) {
   const {handleSignInWithGoogle} = useAuth();
+  const navigate = useNavigate();
   
   async function handleSignIn () {
     await handleSignInWithGoogle();
+
+    navigate(`/rooms/${roomId}`)
   }
 
   

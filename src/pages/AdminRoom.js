@@ -6,14 +6,44 @@ import Login from '../components/Login';
 import { Sidebar } from '../components/Sidebar';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../hooks/useAuth';
+import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 
 
 export function AdminRoom () {
+  const [isAdmin, setIsAdmin] =  useState(false)
   const [room, setRoom] = useState({});
   const {pathname} = useLocation();
   const { user } = useAuth();
   const chatMessagesRef = useRef(null);
+  const {handleSetRoomId, roomId} = useRoom();
+    
+  useEffect(() => {
+    if (window.location.pathname.split('/')[1] === 'admin') {
+      handleSetRoomId(window.location.pathname.split('/')[3])
+    }
+  }, [])
+
+  useEffect(() => {
+    if (roomId && user) {
+      async function  FetchRoomInfo () {
+        const roomRef = await database.ref(`rooms/${roomId}`).get();
+        const roomInfo = roomRef.val();
+        const adm = roomInfo.author.email === user.email;
+
+        if (!adm) {
+          window.location.href = `/rooms/${roomId}`;
+        } 
+        if (adm === true) {
+          setIsAdmin(true);
+        }
+      } 
+    
+      FetchRoomInfo();
+    }
+  }, [user]);
+  
+
 
   // Scroll to last message
   useEffect(() => {
@@ -34,7 +64,7 @@ export function AdminRoom () {
     FetchRoomData();
   }, [])
 
-  return user && room ? (
+  return user && room && roomId && isAdmin ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <Sidebar />
@@ -48,9 +78,9 @@ export function AdminRoom () {
         </main>
       </div>
     </div>
-  ) : room ? (
-    <Spinner />    
-  ) : (
+  ) : !user ? (
     <Login />
-  )
+  ): !room && (
+    <Spinner />    
+  ) 
 }
