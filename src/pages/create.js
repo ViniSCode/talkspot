@@ -20,10 +20,7 @@ export function  CreateRoom () {
   async function getImageURL() {
     try {
       const imageRef = ref(storage, `images/${roomImage.name + v4()}`)
-      await uploadBytes(imageRef, roomImage).then(() => {
-        toast.success("Image uploaded")
-      });
-  
+      await uploadBytes(imageRef, roomImage);
       const imageURL = await getDownloadURL(imageRef);
       console.error(imageURL);
 
@@ -57,6 +54,7 @@ export function  CreateRoom () {
       image: image
     });
 
+    toast.success("Room Created");
     handleSetRoomId(firebaseRoom.key);
     navigate(`/admin/rooms/${firebaseRoom.key}`)
   }
