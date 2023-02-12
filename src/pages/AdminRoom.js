@@ -33,7 +33,7 @@ export function AdminRoom () {
       async function  FetchRoomInfo () {
         const roomRef = await database.ref(`rooms/${roomId}`).get();
         const roomInfo = roomRef.val();
-        const adm = roomInfo.author.email === user.email;
+        const adm = roomInfo?.author.email === user.email;
 
         if (!adm) {
           navigate(`/rooms/${roomId}`);

@@ -27,7 +27,7 @@ export function Room () {
       async function  FetchRoomInfo () {
         const roomRef = await database.ref(`rooms/${roomId}`).get();
         const roomInfo = roomRef.val();
-        const adm = roomInfo.author.email === user.email ? true : false;
+        const adm = roomInfo?.author.email === user.email ? true : false;
         if (adm === true) {
           navigate(`/admin/rooms/${roomId}`);
         }
