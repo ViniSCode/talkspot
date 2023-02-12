@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useRoom } from '../../hooks/useRoom';
+import { firebase } from '../../services/firebase';
 import RoomInfo from '../Room/RoomInfo';
 import MessageInput from './MessageInput';
-// here needs to connect user to the current room that they just created
-// for example localhost:8080/rooms/-GNs1935uDN90808/ so anyone with the room code -GNs1935uDN90808, can access the chat
+
+// when user creates a room, or access an existent room (using an ID) the Chat Component will be displayed
+// in the room, and when user post a message the message will be posted on the firebase DB
+// list the messages from firebase inside the chat,
+// the messages should update in real-time for every user in the room
 
 export function Chat ({chatMessagesRef, user, room}) {
   const {roomId} = useRoom()  
@@ -16,8 +20,8 @@ export function Chat ({chatMessagesRef, user, room}) {
       chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight
     }
   }
-  
-  function handleCreateMessage () {  
+
+  function handleCreateMessage () {
     if (newMessage.trim() && messages.length > 0) {
       setMessages([...messages, {
         roomId: roomId,
@@ -30,7 +34,20 @@ export function Chat ({chatMessagesRef, user, room}) {
         },
         message: newMessage
       }])
-
+  
+      // Add the message to Firebase Realtime Database
+      firebase.database().ref(`rooms/${roomId}/messages`).push({
+        roomId: roomId,
+        id: myId,
+        user: {
+          id: myId,
+          isLastMessageFromTheSameUser: myId === messages[messages.length - 1].user.id,
+          name: user.name,
+          avatar: user.avatar
+        },
+        message: newMessage
+      });
+  
       setNewMessage('');
       scrollToLastMessage();
     } else if (newMessage.trim()) {
@@ -45,16 +62,39 @@ export function Chat ({chatMessagesRef, user, room}) {
         },
         message: newMessage
       }])
-
-        setNewMessage('');
-        scrollToLastMessage();
-      }
-  }
   
+      // Add the message to Firebase Realtime Database
+      firebase.database().ref(`rooms/${roomId}/messages`).push({
+        roomId: roomId,
+        id: myId,
+        user: {
+          id: myId,
+          name: user.name,
+          isLastMessageFromTheSameUser: false,
+          avatar: user.avatar
+        },
+        message: newMessage
+      });
+  
+      setNewMessage('');
+      scrollToLastMessage();
+    }
+  }
+
   useEffect(() => {
     scrollToLastMessage();
   }, [messages, scrollToLastMessage]) 
 
+
+  useEffect(() => {
+    const messagesRef = firebase.database().ref(`rooms/${roomId}/messages`);
+        
+    messagesRef.on('value', snapshot => {
+      if (snapshot.val()) {
+        setMessages(Object.values(snapshot.val()))
+      }
+    });
+  }, [roomId]);
 
   return (
     <section>
@@ -71,7 +111,6 @@ export function Chat ({chatMessagesRef, user, room}) {
                     </div>
                   </div>
                 ) : (
-
                   // ${message.id === myId}
                   <div className={`${message.user.id === myId ? 'msg-mine' : 'msg-other'} mt-8`} key={index}>
                     <div  className='flex items-center gap-3'>

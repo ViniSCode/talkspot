@@ -18,7 +18,10 @@ export function RoomProvider (props) {
   
   function handleSetRoomId (id) {
     setRoomId(id);
+    
     if (typeof window !== "undefined") {
+      localStorage.removeItem("@talkspot:roomId")
+
       localStorage.setItem(
         "@talkspot:roomId",
         JSON.stringify(id)

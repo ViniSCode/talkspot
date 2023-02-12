@@ -57,7 +57,6 @@ export function  CreateRoom () {
       image: image
     });
 
-
     handleSetRoomId(firebaseRoom.key);
     navigate(`/admin/rooms/${firebaseRoom.key}`)
   }

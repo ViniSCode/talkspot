@@ -5,12 +5,12 @@ import Login from '../components/Login';
 import { Sidebar } from '../components/Sidebar';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../hooks/useAuth';
-import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
+
+const roomId = window.location.pathname.split('/')[2];
 
 export function Room () {
   const [room, setRoom] = useState({});
-  const { roomId } = useRoom();
   const { user } = useAuth();
   const chatMessagesRef = useRef(null);
 

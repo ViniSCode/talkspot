@@ -12,7 +12,6 @@ import { CreateRoom } from "./pages/create";
 import { DeleteRoom } from "./pages/delete";
 import { Room } from "./pages/room";
 import { Settings } from "./pages/settings";
-import { Users } from "./pages/users";
 import './styles/global.css';
 
 function App() {
@@ -32,10 +31,6 @@ function App() {
     {
       path: "/admin/rooms/:id",
       element: <AdminRoom />,
-    },
-    {
-      path: "/users",
-      element: <Users />,
     },
     {
       path: "/settings",

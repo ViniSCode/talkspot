@@ -8,7 +8,7 @@ import { database } from '../services/firebase';
 
 export function Settings () {
   const [room, setRoom] = useState({});
-  const { roomId } = useRoom();
+  const { roomId, handleSetRoomId} = useRoom();
   const { user } = useAuth();
   const chatMessagesRef = useRef(null);
 

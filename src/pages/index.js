@@ -29,6 +29,7 @@ export function  Home () {
 
     if (roomCode.trim())  {
       handleSetRoomId(roomCode);
+      
       navigate(`rooms/${roomCode}`)
     }
     
