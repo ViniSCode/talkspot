@@ -25,11 +25,6 @@ export function MobileMenuItems ({isMenuOpen}) {
       name: 'Messages',
       icon: <FiMessageSquare size={22} className="svg"/>
     },
-    // {
-    //   href: '/users',
-    //   name: 'Users',
-    //   icon: <FiUsers size={22} className="svg"/>
-    // },
     {
       href: '/settings',
       name: 'Settings',

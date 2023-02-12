@@ -22,7 +22,7 @@ export function Sidebar () {
 
   const menuItems = [
     {
-      href: `/admin/rooms/${roomId}`,
+      href: `/rooms/${roomId}`,
       name: 'Messages',
       icon: <FiMessageSquare size={22} className="svg"/>
     },

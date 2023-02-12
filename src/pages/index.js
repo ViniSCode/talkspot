@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BsGoogle } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 export function  Home () {
@@ -24,8 +25,13 @@ export function  Home () {
     }
   };
 
-  function handleSubmit (event)  {
+  async function handleSubmit (event)  {
     event.preventDefault();
+
+    if (!user) {
+      toast.warn('You must be logged in to access this page')
+      await handleSignInWithGoogle();
+    }
 
     if (roomCode.trim())  {
       handleSetRoomId(roomCode);
@@ -59,9 +65,9 @@ export function  Home () {
             ) }
 
           <form onSubmit={handleSubmit} className='w-full'>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full justify-center mb-4">
               <div className="w-8 lg:w-16 h-[1px] bg-gray-400"></div>
-              <span className='block text-gray-400 text-xs lg:text-base font-medium'>Ou entre em uma sala</span>
+              <span className='block text-gray-400 text-xs lg:text-base font-medium text-center'>Ou entre em uma sala</span>
               <div className="w-8 lg:w-16 h-[1px] bg-gray-400"></div>
             </div>
 
