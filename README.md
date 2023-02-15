@@ -9,6 +9,7 @@ I am thrilled to introduce you to my latest project: TalkSpot, a real-time commu
 ## Preview
 
 Check out a live demo of the app at: work in progress
+[TalkSpot Preview](https://talkspot.vercel.app/)
 
 ## Technologies Used
 
@@ -20,8 +21,7 @@ Check out a live demo of the app at: work in progress
 
 ## Deployment
 
-The app is deployed and ready to use at: Work in progress
-
+The app is deployed and ready to use at: [TalkSpot Preview](https://talkspot.vercel.app/) (Work in Progress...)
 ## Author
 
-This project was created by viniscode. Thank you for visiting!# talkspot
+This project was created by viniscode. Thank you for visiting!
