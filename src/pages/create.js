@@ -1,7 +1,9 @@
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
 import { MdOutlineCreate } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import ImageUpload from '../components/ImageUpload';
@@ -61,7 +63,7 @@ export function  CreateRoom () {
 
   
   return (
-    <div className="max-w-[1276px] mx-auto p-4 flex items-center justify-center">
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4, }} className="max-w-[1276px] mx-auto p-4 flex items-center justify-center">
       <div className="h-centered w-full px-4">
         <div className="max-w-[358px] lg:max-w-[530px] mx-auto px-8 py-12 lg:px-16 lg:py-20 bg-white lg:bg-gray-200 rounded-2xl">
           <h1 className='text-center text-4xl font-medium'>Crie uma <span className='text-blue-500'>Sala</span></h1>
@@ -77,18 +79,27 @@ export function  CreateRoom () {
                   className="px-4 py-4 rounded-lg border border-gray-500 text-gray-500 placeholder:text-gray-500 w-full placeholder:text-sm lg:placeholder:text-base" />
               </div>
               <ImageUpload setRoomImage={setRoomImage} roomImage={roomImage}/>
-              <button 
-                className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-blue-500 px-4 py-4 rounded-lg transition-colors hover:bg-blue-600  w-full'
-                onClick={handleCreateRoom}
-              >
-                <MdOutlineCreate className="text-white w-4 h-4 lg:w-5 lg:h-5" />
-                Criar sala
-              </button>
-              
+              <div className='w-full flex flex-col gap-4 items-center'>
+                <button 
+                  type='submit'
+                  className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-blue-500 px-4 py-4 rounded-lg transition-colors hover:bg-blue-600  w-full'
+                  onClick={handleCreateRoom}
+                >
+                  <MdOutlineCreate className="text-white w-4 h-4 lg:w-5 lg:h-5" />
+                  Criar sala
+                </button>
+
+                <Link to="/" 
+                  className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-gray-500 px-4 py-4 rounded-lg transition-colors hover:bg-gray-600  w-full'
+                >
+                  <FiArrowLeft className="text-white w-4 h-4 lg:w-5 lg:h-5" />
+                  Voltar
+                </Link>  
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

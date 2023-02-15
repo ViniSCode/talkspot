@@ -1,18 +1,47 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
-import Login from '../components/Login';
-import { Sidebar } from '../components/Sidebar';
+import Loading from '../components/Loading';
+import { AdminSidebar } from '../components/Sidebar/AdminSidebar';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
+import { database } from '../services/firebase';
 
 export function DeleteRoom () {
   const {user} = useAuth();
   const {handleSetRoomId, roomId} = useRoom();
+  const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] =  useState(false)
+  
+  useEffect(() => {
+    if (roomId && user) {
+      async function  FetchRoomInfo () {
+        const roomRef = await database.ref(`rooms/${roomId}`).get();
+        const roomInfo = roomRef.val();
+
+        if (roomInfo) {
+          const adm = roomInfo.author.email === user.email;
+          
+          if (adm === true) {
+            setIsAdmin(true);
+          }
+  
+          if (!adm) {
+            navigate(`/rooms/${roomId}`);
+          } 
+        }
+      } 
+    
+      const roomData = FetchRoomInfo();
+    }
+  }, [user]);
 
 
-  return user ? (
+
+  return user && isAdmin ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
-        <Sidebar />
+        <AdminSidebar />
       </div>
       <div>
         
@@ -38,6 +67,6 @@ export function DeleteRoom () {
       </div>
     </div>
   ) : (
-    <Login />
+    <Loading />
   )
 }

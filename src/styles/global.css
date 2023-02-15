@@ -59,7 +59,7 @@ body {
   }
 
 .li:hover {
-    color: #3A35DF;
+    color: #413BDD;
   }
 
   .modal-shadow {
@@ -83,7 +83,33 @@ body {
   }
 
   .msg-mine > div > p {
-    background-color: #3A35DF;
+    background-color: #FCFCFC;
+    border-radius: 16px 0 16px 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 12px;
+    margin-right: 52px;
+  }
+
+  .msg-mine-skeleton {
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-end;
+    marin-top: 1.5rem;
+  }
+  .msg-mine-skeleton > div > span{
+    order: 0;
+    color: black;
+  }
+
+  .msg.mine-skeleton > div > img{
+    order: 1;
+  }
+
+  .msg-mine-skeleton > div > p {
+    background-color: #FCFCFC;
     border-radius: 16px 0 16px 16px;
     color: white;
     display: flex;

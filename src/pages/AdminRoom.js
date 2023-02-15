@@ -1,10 +1,10 @@
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Chat } from '../components/Chat/Chat';
 import { Header } from '../components/Header';
-import Login from '../components/Login';
-import { Sidebar } from '../components/Sidebar';
-import Spinner from '../components/Spinner';
+import { AdminSidebar } from '../components/Sidebar/AdminSidebar';
+import { Skeleton } from '../components/Skeleton';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
@@ -32,13 +32,14 @@ export function AdminRoom () {
 
         if (roomInfo) {
           const adm = roomInfo.author.email === user.email;
+          
+          if (adm === true) {
+            setIsAdmin(true);
+          }
   
           if (!adm) {
             navigate(`/rooms/${roomId}`);
           } 
-          if (adm === true) {
-            setIsAdmin(true);
-          }
         }
       } 
     
@@ -65,10 +66,10 @@ export function AdminRoom () {
 
   
   
-  return user && room && roomId && isAdmin  ? (
-    <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
+  return user && room &&  isAdmin ? (
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4, }} className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
-        <Sidebar />
+        <AdminSidebar />
       </div>
       <div>
         
@@ -78,10 +79,8 @@ export function AdminRoom () {
          <Chat chatMessagesRef={chatMessagesRef} user={user} roomId={roomId} room={room}/>
         </main>
       </div>
-    </div>
-  ) : !user && roomId ? (
-    <Login roomId={roomId}/>
-  ): !room && (
-    <Spinner />    
+    </motion.div>
+  ) : (
+    <Skeleton />    
   ) 
 }
