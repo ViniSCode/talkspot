@@ -107,7 +107,7 @@ export function Chat ({chatMessagesRef, user, room}) {
                 return message.user.isLastMessageFromTheSameUser ? (
                   <div className={`${message.user.id === myId ? 'msg-mine' : 'msg-other'}`} key={index}>
                     <div>
-                      <p className={`bg-blue-500 balloon-user px-4 py-3 w-fit message max-w-[170px] md:max-w-[300px] break-words`}>{message.message}</p>
+                      <p className={`px-4 py-3 w-fit message max-w-[170px] md:max-w-[300px] break-words`}>{message.message}</p>
                     </div>
                   </div>
                 ) : (
@@ -118,7 +118,7 @@ export function Chat ({chatMessagesRef, user, room}) {
                       <img src={message.user.avatar} referrerPolicy="no-referrer" alt={message.user.name}  className="w-9 h-9 object-cover rounded-full"/>
                     </div>
                     <div>
-                      <p className={`balloon-user px-4 py-3 w-fit message max-w-[170px] md:max-w-[300px] break-words`}>{message.message}</p>
+                      <p className={`px-4 py-3 w-fit message max-w-[170px] md:max-w-[300px] break-words`}>{message.message}</p>
                     </div>
                   </div>
                 )

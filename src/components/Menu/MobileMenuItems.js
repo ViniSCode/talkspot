@@ -47,7 +47,7 @@ export function MobileMenuItems ({isMenuOpen}) {
                 <motion.li
                   key={item.name}
                   initial={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                  animate={selected === item.href ? { backgroundColor: '#FFFFFF', color: '#3A35DF' } : { backgroundColor: '#3A35DF', color: '#FFFFFF' }}  
+                  animate={selected === item.href ? { backgroundColor: '#FFFFFF', color: '#413BDD' } : { backgroundColor: '#413BDD', color: '#FFFFFF' }}  
                   className={`hover:underline rounded-2xl px-2 py-2 w-[160px] mx-auto flex items-center justify-center`}
                 >
                   <Link to={item.href} className={`flex items-center gap-4 font-medium ${pathname === item.href ? '' : 'liMobile'}`}>

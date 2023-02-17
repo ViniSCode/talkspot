@@ -8,11 +8,21 @@ import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
 
 export function DeleteRoom () {
-  const {user} = useAuth();
-  const {handleSetRoomId, roomId} = useRoom();
+  const [room, setRoom] = useState({});
+  const { roomId, handleSetRoomId} = useRoom();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] =  useState(false)
-  
+  // get Room Data
+  useEffect(() => {
+    const FetchRoomData = async () => {
+      const roomRef = await database.ref(`rooms/${roomId}`).get();
+      setRoom(roomRef.val())
+    } 
+
+    FetchRoomData();
+  }, [roomId]);
+
   useEffect(() => {
     if (roomId && user) {
       async function  FetchRoomInfo () {
@@ -36,9 +46,7 @@ export function DeleteRoom () {
     }
   }, [user]);
 
-
-
-  return user && isAdmin ? (
+  return user && isAdmin && room && roomId ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <AdminSidebar />
@@ -48,12 +56,12 @@ export function DeleteRoom () {
       <Header />
 
         <main className='mt-5 md:mt-8 max-w-full md:max-w-[480px] md:mx-auto lg:max-w-full lg:mt-4 lg:pr-[58px] lg:pl-12'>
-          <h3 className='text-2xl mt-12 font-medium'>Delete Room</h3>
+          <h3 className='text-2xl mt-12 font-medium'>Delete {room.name}</h3>
           <div className='mt-8'>
             <span className='text-gray-500'>Room Information</span>
             <div className='flex items-center flex-col lg:flex-row gap-3 mt-4'>
-              <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="room avatar"  className="w-10 h-10  lg:w-14 lg:h-14 object-cover rounded-full"/>
-              <span className='text-lg font-medium'>Room's Name</span>
+              <img src={room.image} referrerPolicy="no-referrer" alt="room avatar"  className="w-10 h-10  lg:w-14 lg:h-14 object-cover rounded-full"/>
+              <span className='text-lg font-medium'>{room.name}</span>
             </div>
             <div className='mt-10 lg:mt-10 lg:max-w-xs'>
               <span className='block text-red-500 font-medium text-lg'>Are you sure you want to delete this room?</span>

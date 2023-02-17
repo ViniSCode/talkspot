@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import Loading from '../components/Loading';
@@ -13,15 +13,7 @@ export function Settings () {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] =  useState(false)
-  const chatMessagesRef = useRef(null);
-
-  // Scroll to last message
-  useEffect(() => {
-    if (chatMessagesRef.current) {
-      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight
-    }
-  }, []);
-
+  
   // get Room Data
   useEffect(() => {
     const FetchRoomData = async () => {
@@ -51,13 +43,13 @@ export function Settings () {
         }
       } 
     
-      const roomData = FetchRoomInfo();
+      FetchRoomInfo();
     }
   }, [user]);
 
   
 
-  return user && room && isAdmin ? (
+  return user && room && isAdmin && roomId ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <AdminSidebar />

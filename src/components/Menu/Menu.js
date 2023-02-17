@@ -9,7 +9,7 @@ export function Menu ({isMenuOpen, setIsMenuOpen}) {
     >
       <div className='cursor-pointer'>
         <motion.span
-          animate={isMenuOpen ? { rotate: 45, y: 6, backgroundColor: 'white'} : { rotate: 0 }}
+          animate={isMenuOpen ? { rotate: 45, y: 6, backgroundColor: '#FFFFFF'} : { rotate: 0 }}
           className="block rounded-lg w-6 h-[4px] bg-blue-500 transition-all duration-200"
         />
         <motion.span
@@ -17,7 +17,7 @@ export function Menu ({isMenuOpen, setIsMenuOpen}) {
           className="block rounded-lg w-6 h-[4px] bg-blue-500 transition-all duration-200 mt-1"
         />
         <motion.span
-          animate={isMenuOpen ? { rotate: -45, y: -10, backgroundColor: 'white'} : { rotate: 0 }}
+          animate={isMenuOpen ? { rotate: -45, y: -10, backgroundColor: '#FFFFFF'} : { rotate: 0 }}
           className="block rounded-lg w-6 h-[4px] bg-blue-500 transition-all duration-200 mt-1"
         />
       </div>

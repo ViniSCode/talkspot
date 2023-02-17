@@ -39,7 +39,7 @@ export function Room () {
     
       FetchRoomInfo();
     }
-  }, [user]);
+  }, [user, roomId]);
 
   // Scroll to last message
   useEffect(() => {
@@ -56,9 +56,9 @@ export function Room () {
     } 
 
     FetchRoomData();
-  }, [roomId])
+  }, [user])
   
-  return user && room && roomId && !isAdmin ? (
+  return room && user && roomId ? (
     <motion.div initial={{opacity: 0}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4, }} className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
       <div className="hidden lg:block h-full w-full">
         <Sidebar />
@@ -68,7 +68,7 @@ export function Room () {
       <Header />
 
         <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4 lg:pr-[58px]'>
-         <Chat chatMessagesRef={chatMessagesRef} user={user} roomId={roomId} room={room}/>
+         {room && <Chat chatMessagesRef={chatMessagesRef} user={user} roomId={roomId} room={room}/>}
         </main>
       </div>
     </motion.div>

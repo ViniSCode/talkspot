@@ -51,7 +51,7 @@ export function Sidebar () {
                 <motion.li
                   key={item.name}
                   initial={{ backgroundColor: '#FFFFFF', color: '#000000' }}
-                  animate={selected === item.href ? { backgroundColor: '#3A35DF', color: '#FFFFFF' } : { backgroundColor: '#FFFFFF', color: '#000000' }}  
+                  animate={selected === item.href ? { backgroundColor: '#413BDD', color: '#FFFFFF' } : { backgroundColor: '#FFFFFF', color: '#000000' }}  
                   className={`rounded-lg px-2 py-2 w-[200px]`}
                 >
                   <Link to={item.href} className={`flex items-center gap-4 font-medium ${pathname === item.href ? 'liActive' : 'li'}`}>
