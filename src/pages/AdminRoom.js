@@ -45,7 +45,7 @@ export function AdminRoom () {
     
       FetchRoomInfo();
     }
-  }, [user]);
+  }, []);
 
   // Scroll to last message
   useEffect(() => {

@@ -87,6 +87,10 @@ export function Chat ({chatMessagesRef, user, room}) {
 
 
   useEffect(() => {
+    if (messages) {
+      setMessages([]);
+    }
+
     const messagesRef = firebase.database().ref(`rooms/${roomId}/messages`);
         
     messagesRef.on('value', snapshot => {
