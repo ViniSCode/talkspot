@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from "react";
-import { FiLogOut, FiMessageSquare } from "react-icons/fi";
+import { FiLogOut, FiMessageSquare, FiSettings, FiXCircle } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 
-export function MobileMenuItems ({isMenuOpen}) {
+export function AdminMobileMenu ({isMenuOpen}) {
   const [selected, isSelected] = useState();
   const {handleSignOut} = useAuth();
   const {pathname} = useLocation();
@@ -25,6 +25,16 @@ export function MobileMenuItems ({isMenuOpen}) {
       name: 'Messages',
       icon: <FiMessageSquare size={22} className="svg"/>
     },
+    {
+      href: '/settings',
+      name: 'Settings',
+      icon: <FiSettings size={22} className="svg"/>
+    },
+    {
+      href: '/delete',
+      name: 'Delete',
+      icon: <FiXCircle size={22} className="svg"/>
+    }
   ]
 
   return (

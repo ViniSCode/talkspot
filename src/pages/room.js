@@ -39,7 +39,7 @@ export function Room () {
     
       FetchRoomInfo();
     }
-  }, []);
+  }, [user, roomId]);
 
   // Scroll to last message
   useEffect(() => {

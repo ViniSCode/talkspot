@@ -26,16 +26,6 @@ export function Sidebar () {
       name: 'Messages',
       icon: <FiMessageSquare size={22} className="svg"/>
     },
-    // {
-    //   href: '/settings',
-    //   name: 'Settings',
-    //   icon: <FiSettings size={22} className="svg"/>
-    // },
-    // {
-    //   href: '/delete',
-    //   name: 'Delete',
-    //   icon: <FiXCircle size={22} className="svg"/>
-    // }
   ]
 
   return (

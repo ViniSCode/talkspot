@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HeaderAdmin } from '../components/AdminHeader';
 import { Chat } from '../components/Chat/Chat';
-import { Header } from '../components/Header';
 import Loading from '../components/Loading';
 import { AdminSidebar } from '../components/Sidebar/AdminSidebar';
 import { useAuth } from '../hooks/useAuth';
@@ -45,7 +45,8 @@ export function AdminRoom () {
     
       FetchRoomInfo();
     }
-  }, []);
+  }, [user, roomId]);
+
 
   // Scroll to last message
   useEffect(() => {
@@ -73,7 +74,7 @@ export function AdminRoom () {
       </div>
       
       <div>  
-        <Header />
+        <HeaderAdmin />
 
         <main className='mt-5 md:mt-8 lg:pl-6 lg:mt-4 lg:pr-[58px]'>
          <Chat chatMessagesRef={chatMessagesRef} user={user} roomId={roomId} room={room}/>
