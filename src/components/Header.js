@@ -30,7 +30,7 @@ export function Header() {
   };
 
   function handleCopyRoomCode () {
-    const copy = pathname.split('/')[3];
+    const copy = pathname.split('/')[2];
     navigator.clipboard.writeText(copy);
     toast.success('Copied to the clipboard');
   };
@@ -57,7 +57,7 @@ export function Header() {
                 <span className='bg-blue-500 p-2 rounded-lg'>
                   <FiCopy size={22} className="text-white"/>
                 </span>
-                {pathname && pathname.split('/')[3]}
+                {pathname && pathname.split('/')[2]}
               </span>
             </motion.div>
           )}

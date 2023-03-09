@@ -33,6 +33,7 @@ export function  Home () {
     if (!user) {
       toast.warn('You must be logged in to access this page')
       await handleSignInWithGoogle();
+      navigate(`/create`);
     }
 
     if (roomCode.trim())  {
