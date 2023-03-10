@@ -4,6 +4,7 @@ import { HeaderAdmin } from '../components/AdminHeader';
 import { Chat } from '../components/Chat/Chat';
 import Loading from '../components/Loading';
 import { AdminSidebar } from '../components/Sidebar/AdminSidebar';
+import Unauthorized from '../components/Unauthorized';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
@@ -14,6 +15,7 @@ export function AdminRoom() {
   const { user } = useAuth();
   const chatMessagesRef = useRef(null);
   const { handleSetRoomId, roomId } = useRoom();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (window.location.pathname.split('/')[1] === 'admin') {
@@ -51,6 +53,7 @@ export function AdminRoom() {
             setIsAdmin(true);
           }
         }
+        setLoading(false);
       }
 
       FetchRoomInfo();
@@ -81,7 +84,9 @@ export function AdminRoom() {
         </main>
       </div>
     </motion.div>
+  ) : !loading && !isAdmin ? (
+    <Unauthorized />
   ) : (
     <Loading />
-  );
+  ) 
 }
