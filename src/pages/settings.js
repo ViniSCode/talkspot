@@ -1,6 +1,7 @@
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import { Header } from '../components/Header';
 import Loading from '../components/Loading';
@@ -16,6 +17,7 @@ export function Settings () {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] =  useState(false)
   const [image, setImage] = useState(null);
+  const [newRoomName, setNewRoomName] = useState("");
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -56,13 +58,19 @@ export function Settings () {
   }, [user]);
 
   async function handleUpdateRoom () {
-    const image = await getImageURL()
+    if (!image || newRoomName.trim() === "" ) {
+      toast.warning('Please complete all required fields before creating the room')
+      return;
+    } 
+    const imageURL = await getImageURL()
 
     const roomRef = database.ref('rooms/' + roomId);
     await roomRef.update({ 
-      // name: newRoomName,
-      image: image
+      name: newRoomName,
+      image: imageURL
     })
+    toast.success("Room updated successfully! Your changes have been saved.")
+    window.location.reload();
   }
 
   async function getImageURL() {
@@ -102,8 +110,8 @@ export function Settings () {
             <div className='mt-10 lg:mt-4 lg:max-w-xs'>
               <span className='block'>Change Room name</span>
               <label htmlFor="roomName"></label>
-              <input type="text" id='roomName' name='roomName'placeholder={room.name} className='mt-4 border py-2 px-2 rounded-lg border-gray-500 placeholder:text-gray-500 w-full'/>
-              <button className='mt-4 border-blue-500 w-full lg:min-w-fit border px-2 py-2 rounded-lg  text-blue-500 hover:text-white transition-colors hover:bg-blue-500'>Save Settings</button>
+              <input type="text" id='roomName' name='roomName'placeholder={room.name} value={newRoomName} className='mt-4 border py-2 px-2 rounded-lg border-gray-500 placeholder:text-gray-500 w-full' onChange={(e) => setNewRoomName(e.target.value)}/>
+              <button className='mt-4 border-blue-500 w-full lg:min-w-fit border px-2 py-2 rounded-lg  text-blue-500 hover:text-white transition-colors hover:bg-blue-500' onClick={handleUpdateRoom}>Save Settings</button>
             </div>
           </div>
         </main>
