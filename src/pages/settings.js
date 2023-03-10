@@ -1,11 +1,13 @@
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 } from 'uuid';
 import { Header } from '../components/Header';
 import Loading from '../components/Loading';
 import { AdminSidebar } from '../components/Sidebar/AdminSidebar';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
-import { database } from '../services/firebase';
+import { database, storage } from '../services/firebase';
 
 export function Settings () {
   const [room, setRoom] = useState({});
@@ -13,6 +15,12 @@ export function Settings () {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] =  useState(false)
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
   
   // get Room Data
   useEffect(() => {
@@ -47,7 +55,28 @@ export function Settings () {
     }
   }, [user]);
 
-  
+  async function handleUpdateRoom () {
+    const image = await getImageURL()
+
+    const roomRef = database.ref('rooms/' + roomId);
+    await roomRef.update({ 
+      // name: newRoomName,
+      image: image
+    })
+  }
+
+  async function getImageURL() {
+    try {
+      const imageRef = ref(storage, `images/${image.name + v4()}`)
+      await uploadBytes(imageRef, image);
+      const imageURL = await getDownloadURL(imageRef);
+      console.error(imageURL);
+
+      return imageURL;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return user && room && isAdmin && roomId ? (
     <div className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
@@ -62,10 +91,13 @@ export function Settings () {
           <h3 className='text-2xl mt-12 font-medium'>{room.name} Settings</h3>
           <div className='mt-8'>
             <span>Image</span>
-            <div className='flex items-center flex-col lg:flex-row gap-3 mt-4'>
-              <img src={room?.image} alt={room?.name} referrerPolicy="no-referrer"  className="w-10 h-10  lg:w-14 lg:h-14 object-cover rounded-full"/>
-              <button className='border-blue-500 w-full lg:max-w-fit border px-2 py-2 rounded-lg text-blue-500 hover:text-white transition-colors hover:bg-blue-500'>Upload</button>
-              <button className='border-blue-500 w-full lg:max-w-fit border px-2 py-2 rounded-lg text-blue-500 hover:text-white transition-colors hover:bg-blue-500'>Remove</button>
+            <div className='flex items-center flex-col lg:flex-row gap-3 mt-4 lg:max-w-xs'>
+            {image ? (
+              <img src={URL.createObjectURL(image)} alt="Preview" className="w-20 h-20 lg:w-16 lg:h-16 rounded-full object-cover" />
+            ) : (
+              <img src={room?.image} alt={room?.name} referrerPolicy="no-referrer"  className="w-20 h-20 lg:w-16 lg:h-16 rounded-full object-cover"/>
+            )}
+              <input type="file" accept='image/*' onChange={handleImageChange}  placeholder="Upload image" className="px-2 py-2 rounded-lg border border-gray-500 w-full placeholder:text-sm lg:placeholder:text-base file:bg-blue-500 file:rounded-lg file:text-white file:border-none file:text-sm file:py-1 file:px-4 cursor-pointer file:cursor-pointer text-blue-500 font-medium" />
             </div>
             <div className='mt-10 lg:mt-4 lg:max-w-xs'>
               <span className='block'>Change Room name</span>

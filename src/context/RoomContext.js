@@ -1,30 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const RoomContext = createContext({});
 
 export function RoomProvider (props) {
   const [roomId, setRoomId] = useState(null);
 
-  // useEffect(() => {
-  //   if (!roomId) {
-  //     if (typeof window !== "undefined") {
-  //       const storageId = localStorage.getItem("@talkspot:roomId");
-  //       setRoomId(JSON.parse(storageId))
-  //     }
-  //   }
-  // }, [])
+  useEffect(() => {
+    const savedRoomId = localStorage.getItem('roomId');
+    if (savedRoomId) {
+      setRoomId(savedRoomId);
+    }
+  }, []);
 
   function handleSetRoomId(id) {
     setRoomId(id);
-    
-    // if (typeof window !== "undefined") {
-    //   localStorage.setItem(
-    //     "@talkspot:roomId",
-    //     JSON.stringify(id)
-    //   );
-    // }
   }
-  
+
+  useEffect(() => {
+     if (roomId) {
+       localStorage.setItem('roomId', roomId);
+     }
+  }, [roomId]);
+
   return (
     <RoomContext.Provider value={{ handleSetRoomId, roomId }}>
       {props.children}
