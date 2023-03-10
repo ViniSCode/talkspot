@@ -1,6 +1,7 @@
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import { Header } from '../components/Header';
@@ -18,6 +19,7 @@ export function Settings () {
   const [isAdmin, setIsAdmin] =  useState(false)
   const [image, setImage] = useState(null);
   const [newRoomName, setNewRoomName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -62,6 +64,14 @@ export function Settings () {
       toast.warning('Please complete all required fields before creating the room')
       return;
     } 
+
+    
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+
     const imageURL = await getImageURL()
 
     const roomRef = database.ref('rooms/' + roomId);
@@ -111,7 +121,13 @@ export function Settings () {
               <span className='block'>Change Room name</span>
               <label htmlFor="roomName"></label>
               <input type="text" id='roomName' name='roomName'placeholder={room.name} value={newRoomName} className='mt-4 border py-2 px-2 rounded-lg border-gray-500 placeholder:text-gray-500 w-full' onChange={(e) => setNewRoomName(e.target.value)}/>
-              <button className='mt-4 border-blue-500 w-full lg:min-w-fit border px-2 py-2 rounded-lg  text-blue-500 hover:text-white transition-colors hover:bg-blue-500' onClick={handleUpdateRoom}>Save Settings</button>
+              {loading ? (
+                  <button className='cursor-default flex items-center justify-center mt-4 border-blue-500 w-full lg:min-w-fit border px-2 py-3 rounded-lg bg-blue-500'>
+                    <PulseLoader color="#FFFFFF" size={10}/>
+                  </button>
+                ) : (
+                  <button className='flex items-center justify-center mt-4 border-blue-500 w-full lg:min-w-fit border px-2 py-2 rounded-lg  text-blue-500 hover:text-white transition-colors hover:bg-blue-500' onClick={handleUpdateRoom}>Save Settings</button>
+              )}
             </div>
           </div>
         </main>
