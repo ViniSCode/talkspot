@@ -18,6 +18,7 @@ const ImageUpload = ({setRoomImage}) => {
       )}
       <input
         type="file"
+        accept="image/*"
         className="px-3 py-3 rounded-lg border border-gray-500 w-full placeholder:text-sm lg:placeholder:text-base file:bg-blue-500 file:rounded-lg file:text-white file:border-none file:py-1 file:px-4 cursor-pointer file:cursor-pointer text-blue-500 font-medium"
         onChange={handleImageChange}
       />
