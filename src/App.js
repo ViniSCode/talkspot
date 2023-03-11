@@ -3,7 +3,7 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "./components/Loading";
 import { AuthProvider } from "./context/AuthContext";
@@ -56,7 +56,19 @@ function App() {
   return (
     <AuthProvider>
       <RoomProvider>
-        <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        transition={Slide}
+        pauseOnHover
+        theme="light"
+      />
         <RouterProvider router={router} />
       </RoomProvider>
     </AuthProvider>
