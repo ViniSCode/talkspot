@@ -19,7 +19,7 @@ export function Settings () {
   const [isAdmin, setIsAdmin] =  useState(false)
   const [image, setImage] = useState(null);
   const [newRoomName, setNewRoomName] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -66,11 +66,11 @@ export function Settings () {
     } 
 
     
-    if (loading) {
+    if (isLoading) {
       return;
     }
 
-    setLoading(true);
+    setIsLoading(true);
 
     const imageURL = await getImageURL()
 
@@ -121,7 +121,7 @@ export function Settings () {
               <span className='block'>Change Room name</span>
               <label htmlFor="roomName"></label>
               <input type="text" id='roomName' name='roomName'placeholder={room.name} value={newRoomName} className='mt-4 border py-2 px-2 rounded-lg border-gray-500 placeholder:text-gray-500 w-full' onChange={(e) => setNewRoomName(e.target.value)}/>
-              {loading ? (
+              {isLoading ? (
                   <button className='cursor-default flex items-center justify-center mt-4 border-blue-500 w-full lg:min-w-fit border px-2 py-3 rounded-lg bg-blue-500'>
                     <PulseLoader color="#FFFFFF" size={10}/>
                   </button>

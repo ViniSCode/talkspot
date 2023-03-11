@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { MdOutlineCreate } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import ImageUpload from '../components/ImageUpload';
@@ -15,6 +16,7 @@ export function  CreateRoom () {
   const {handleSetRoomId} = useRoom()
   const [roomName, setRoomName] = useState("");
   const [roomImage, setRoomImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const {user} = useAuth();
@@ -38,6 +40,12 @@ export function  CreateRoom () {
       toast.warning('Please complete all required fields before creating the room')
       return;
     }
+    
+    if (isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
     
     const image = await getImageURL()
   
@@ -65,7 +73,7 @@ export function  CreateRoom () {
   return (
     <motion.div initial={{opacity: 0}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4, }} className="max-w-[1276px] mx-auto p-4 flex items-center justify-center">
       <div className="h-centered w-full px-4">
-        <div className="max-w-[358px] lg:max-w-[530px] mx-auto px-8 py-12 lg:px-16 lg:py-20 bg-white lg:bg-gray-200 rounded-2xl">
+        <div className="max-w-[358px] lg:max-w-[530px] mx-auto px-8 py-12 lg:px-16 lg:py-14 bg-white lg:bg-gray-200 rounded-2xl">
           <h1 className='text-center text-4xl font-medium'>Crie uma <span className='text-blue-500'>Sala</span></h1>
           <div className="flex flex-col items-center gap-8 mt-[72px]">
             <div className='w-full flex flex-col items-center justify-center gap-6'>
@@ -80,14 +88,20 @@ export function  CreateRoom () {
               </div>
               <ImageUpload setRoomImage={setRoomImage} roomImage={roomImage}/>
               <div className='w-full flex flex-col gap-4 items-center'>
-                <button 
-                  type='submit'
-                  className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-blue-500 px-4 py-4 rounded-lg transition-colors hover:bg-blue-600  w-full'
-                  onClick={handleCreateRoom}
-                >
-                  <MdOutlineCreate className="text-white w-4 h-4 lg:w-5 lg:h-5" />
-                  Criar sala
-                </button>
+              {isLoading ? (
+                  <button className='cursor-default flex items-center justify-center border-blue-500 w-full lg:min-w-fit border px-3 py-[18px] rounded-lg bg-blue-500'>
+                    <PulseLoader color="#FFFFFF" size={10}/>
+                  </button>
+                ) : (
+                  <button 
+                    type='submit'
+                    className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-blue-500 px-4 py-4 rounded-lg transition-colors hover:bg-blue-600  w-full'
+                    onClick={handleCreateRoom}
+                  >
+                    <MdOutlineCreate className="text-white w-4 h-4 lg:w-5 lg:h-5" />
+                    Criar sala
+                  </button>
+                )}
 
                 <Link to="/" 
                   className='flex items-center justify-center font-semibold text-sm gap-2 lg:text-[17px] lg:gap-4 text-white bg-gray-500 px-4 py-4 rounded-lg transition-colors hover:bg-gray-600  w-full'
