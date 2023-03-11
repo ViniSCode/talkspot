@@ -45,13 +45,15 @@ export function Header() {
           <FiUserPlus size={18}/>
         </button>
           {modalShareActive && (
+            <>
+            <div className="fixed inset-0 w-full h-full bg-transparent z-40" onClick={() => setModalShareActive(false)}></div>
             <motion.div 
               onClick={handleCopyRoomCode}
               transition={{type: 'spring', stiffness: 300, damping: 24}} 
               initial={{opacity: 0}}
               exit={{opacity: 0}}
               animate={{opacity: 1, y: 0}} 
-              className='absolute modal-shadow top-12 right-10 lg:right-[58px] p-4 bg-white h-20 w-fit lg:w-fit whitespace-nowrap rounded-tl-2xl rounded-b-2xl flex justify-center items-center'
+              className='absolute z-50 modal-shadow top-12 right-10 lg:right-[58px] p-4 bg-white h-20 w-fit lg:w-fit whitespace-nowrap rounded-tl-2xl rounded-b-2xl flex justify-center items-center'
             >
               <span className='flex items-center gap-2 text-black border-2 border-blue-500 rounded-[10px] pr-2 cursor-pointer text-sm lg:text-base'>
                 <span className='bg-blue-500 p-2 rounded-lg'>
@@ -60,6 +62,7 @@ export function Header() {
                 {pathname && pathname.split('/')[2]}
               </span>
             </motion.div>
+            </>
           )}
         <div className='lg:hidden flex items-center justify-center'>
           <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>

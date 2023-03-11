@@ -46,7 +46,7 @@ export function  Home () {
   return (
     <motion.div initial={{opacity: 0}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4, }} className="max-w-[1276px] mx-auto p-4 flex items-center justify-center">
       <div className="h-centered w-full px-4">
-        <div className="max-w-[358px] lg:max-w-[530px] mx-auto px-8 py-12 lg:px-16 lg:py-20 bg-white lg:bg-gray-200 rounded-2xl">
+        <div className="max-w-[358px] lg:max-w-[530px] mx-auto px-2 py-12 lg:px-16 lg:py-20 bg-white rounded-2xl">
           <h1 className='text-center text-4xl font-medium'>Talk<span className='text-blue-500'>Spot</span></h1>
           <div className="flex flex-col items-center gap-8 mt-[72px]">
             { !user ? (
