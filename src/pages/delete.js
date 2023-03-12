@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
-import { Header } from '../components/Header';
+import { HeaderAdmin } from '../components/AdminHeader';
 import Loading from '../components/Loading';
 import { AdminSidebar } from '../components/Sidebar/AdminSidebar';
 import { useAuth } from '../hooks/useAuth';
@@ -86,7 +86,7 @@ export function DeleteRoom () {
       </div>
       <div>
         
-      <Header />
+      <HeaderAdmin />
 
         <main className='mt-5 md:mt-8 max-w-full md:max-w-[480px] md:mx-auto lg:max-w-full lg:mt-4 lg:pr-[58px] lg:pl-12'>
           <h3 className='text-2xl mt-12 font-medium'>Delete {room.name}</h3>

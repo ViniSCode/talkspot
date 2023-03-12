@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { FiCopy, FiUserPlus } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useRoom } from '../hooks/useRoom';
 import { AdminMobileMenu } from './Menu/AdminMobileMenuItems';
 import { Menu } from './Menu/Menu';
 export function HeaderAdmin() {
   const [modalShareActive, setModalShareActive] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {pathname} = useLocation();
+  const {roomId} = useRoom();
 
   const sidebarVariants = {
     open: {
@@ -30,7 +32,7 @@ export function HeaderAdmin() {
   };
 
   function handleCopyRoomCode () {
-    const copy = pathname.split('/')[3];
+    const copy = roomId;
     navigator.clipboard.writeText(copy);
     toast.success('Copied to the clipboard');
   };
@@ -59,7 +61,7 @@ export function HeaderAdmin() {
                 <span className='bg-blue-500 p-2 rounded-lg'>
                   <FiCopy size={22} className="text-white"/>
                 </span>
-                {pathname && pathname.split('/')[3]}
+                {roomId && roomId}
               </span>
             </motion.div>
             </>
