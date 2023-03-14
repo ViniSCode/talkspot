@@ -23,7 +23,7 @@ export function Room () {
     }
   }, [handleSetRoomId]);
 
-  // get Room Data
+// get Room Data
   useEffect(() => {
     const FetchRoomData = async () => {
       if (roomId) {
@@ -40,7 +40,7 @@ export function Room () {
     FetchRoomData();
   }, [roomId, navigate]);
 
-  // Check for admin rights
+// Check for admin
   useEffect(() => {
     const checkAdminRights = async () => {
       if (roomId && user) {
@@ -59,12 +59,28 @@ export function Room () {
     checkAdminRights();
   }, [roomId, user, navigate]);
 
-  // Scroll to last message
+// Scroll to last message
   useEffect(() => {
     if (chatMessagesRef.current) {
       chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
     }
   }, [room.messages]);
+
+// Check if the room has been deleted
+useEffect(() => {
+  const roomRef = database.ref(`rooms/${roomId}`);
+  const handleRoomDelete = (snapshot) => {
+    if (!snapshot.exists()) {
+      navigate('/');
+    }
+  };
+  roomRef.on('value', handleRoomDelete);
+  
+  return () => {
+    roomRef.off('value', handleRoomDelete);
+  }
+}, [roomId, navigate]);
+
   
   return room && user && roomId ? (
     <motion.div initial={{opacity: 0}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4, }} className="max-w-[358px] md:max-w-[628px] lg:max-w-[1276px] xl:max-w-[1600px] lg:container mx-auto px-4 pt-2 h-[100vh] bg-white rounded-t-none rounded-b-2xl">
