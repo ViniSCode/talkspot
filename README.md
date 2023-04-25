@@ -1,5 +1,3 @@
-# Work in progress
-
 # Welcome to TalkSpot
 
 ![TalkSpot Image Preview](https://github.com/ViniSCode/talkspot/blob/main/public/assets/talkspot_preview.png?raw=true)
